@@ -8,7 +8,7 @@
 <div class="page-header">
     <div class="page-block">
         <div class="row align-items-center">
-            <div class="col-md-12">
+            < class="col-md-12">
                 <div class="page-header-title">
                     <h3 class="m-b-10">FCAM</h3>
                 </div>
@@ -18,6 +18,7 @@
                     <li class="breadcrumb-item"><a href=" {{ route('inscription') }}">Inscription</a></li>
                     <li class="breadcrumb-item"><a href="#!">Liste des inscrits</a></li>
                 </ul>
+                
             </div>
         </div>
     </div>
@@ -69,7 +70,12 @@
                                             <form action="{{ route('apprenant.delete', $apprenant) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('apprenant.edit', $apprenant) }}" method="GET">
+                                                <button type="submit" class="btn btn-success">Update</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -80,4 +86,4 @@
                     </div>
                 </div>
             </div>
-@endsection();
+@endsection

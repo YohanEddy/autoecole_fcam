@@ -32,7 +32,8 @@
                             @if(!isset($moniteur))
                                 <form action="{{ route('moniteur.stores') }}" method="post">
                             @else
-                                <form action="{{ route('moniteur.update') }}" method="POST">
+                                <form action="{{ route('moniteur.update', $moniteur) }}" method="POST" enctype="multipart/form-data">
+                                    <!--input type="hidden" name="_method" value="PUT"-->
                                     @method('PUT')
                             @endif
                                 @csrf
@@ -42,7 +43,7 @@
                                             <label for="validationCustom01"><strong>Nom de Famille</strong></label>
                                             <input type="text" name="nom_moniteur" class="form-control"
                                                 id="validationCustom01" placeholder="Nom de Fammille" 
-                                                value="{{ isset($moniteur) ? $moniteur->nom_moniteur : "" }}"required>
+                                                value="{{ isset($moniteur) ? $moniteur->nom_moniteur : "" }}">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -51,7 +52,7 @@
                                             <label for="validationCustom01"><strong>Prenoms</strong></label>
                                             <input type="text" name="prenom_moniteur" class="form-control"
                                                 id="validationCustom02" placeholder="Prenoms"
-                                                value="{{ isset($moniteur) ? $moniteur->prenom_moniteur : "" }}" required>
+                                                value="{{ isset($moniteur) ? $moniteur->prenom_moniteur : "" }}">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -70,6 +71,7 @@
                                             <label for="exampleFormControlSelect3"><strong>Date de
                                                     naissance</strong></label>
                                             <input type="date" name="date_naiss" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->date_naiss : "" }}"
                                                 id="validationCustom03" placeholder="Date de naissance"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -78,6 +80,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom04"><strong>Lieu de Naissance</strong></label>
                                             <input type="text" name="lieunaiss" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->lieunaiss : "" }}"
                                                 id="validationCustom04" placeholder="Lieu de naissance"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -88,6 +91,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom06"><strong>Adresse du Domicile</strong></label>
                                             <input type="text" name="domicile_moniteur" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->domicile_moniteur : "" }}"
                                                 id="validationCustom06" placeholder="Adresse du domicile"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -97,6 +101,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom05"><strong>Nationalité</strong></label>
                                             <input type="text" name="nationalite" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->nationalite : "" }}"
                                                 id="validationCustom05" placeholder="Nationalité"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -105,6 +110,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom07"><strong>Téléphone</strong></label>
                                             <input type="text" name="telephone" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->telephone : "" }}"
                                                 id="validationCustom07" placeholder="Téléphone"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -113,6 +119,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"><strong>Adresse Mail</strong></label>
                                             <input type="email" name="email" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->email : "" }}"
                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
                                                 placeholder="Entrez l'email">
                                         </div>
@@ -147,6 +154,7 @@
                                         <th>Nationalité</th>
                                         <th>Téléphone</th>
                                         <th>Email</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,12 +174,12 @@
                                             <form action="{{ route('moniteur.delete', $moniteur) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
                                             <form action="{{ route('moniteur.edit', $moniteur) }}" method="GET">
-                                                <button type="submit" class="btn btn-outline-success">Update</button>
+                                                <button type="submit" class="btn btn-success">Update</button>
                                             </form>
                                         </td>
                                     </tr>

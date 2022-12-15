@@ -11,11 +11,12 @@ class SessionController extends Controller
     //
     public function session()
     {
+        //$session = session::all();
         $sessions = session::all();
-        return view('session', compact('sessions'));
+        return view('session', compact('sessions', 'session'));
     }
 
-    public const session = '/sessions';
+    //public const session = '/sessions';
 
     public function store(Request $request)
     {
@@ -28,10 +29,33 @@ class SessionController extends Controller
         return redirect()->route('session');
     }
 
-    public function edit(session $id)
+    public function edit(session $session)
     {
-        $sessions = session::find($id);
-        return view('session_edit', compact("id", "sessions"));
+        
+        //$session = session::findOrFail($session);
+        $sessions = session::all();
+        return view('session', compact( "sessions" ));
+    }
+
+    public function update(Request $request, session $session)
+    {
+        $message = "";
+        $message_type = "";
+        $request->validate([
+            'intitule' => 'required'
+        ]);
+
+        $session->type_permis = $request->type_permis;
+        $session->intitule = $request->intitule;
+
+        $resultat = $session->update();
+        if($resultat == true){
+            $message_type = 'success';
+            $message = "Operation effectuer avec succès.";
+        }else{
+            // message d'echec
+        }
+        return redirect()->route('session')->with($message_type, $message);
     }
 
     public function destroy(session $session)

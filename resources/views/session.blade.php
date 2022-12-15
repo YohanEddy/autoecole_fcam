@@ -26,22 +26,28 @@
                 <!-- [ form-element ] start -->
                 <div class="col-sm-12">
                     <div class="card">
-                        <di class="card-body">
+                        <div class="card-body">
                             <h5>Nouvelle Session</h5>
                             <hr>
-                                    <form action="{{ route('session.store') }}" method="post">
+                                    @if(!isset($session))
+                                        <form action="{{ route('session.store') }}" method="POST">
+                                    @else
+                                        <form action="{{ route('session.update') }}" method= "POST" enctype="multipart/form-data">
+                                        @method('PUT')
+                                    @endif
                                         @csrf
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="exampleFormControlSelect1"><strong>Type de permis</strong></label>
                                                     <select name='type_permis'class="form-control" id="exampleFormControlSelect1">
-                                                        <option value="A">A</option>
-                                                        <option value="B">B</option>
-                                                        <option value="C">C</option>
-                                                        <option value="D">D</option>
-                                                        <option value="E">E</option>
-                                                        <option value="F">F</option>
+                                                        <option value="{{ $session->session_id }}" {{ isset($type_permis) ? (in_array($session->id,$type_permis)? 'selected':''): ''}}>{{$session->type_permis}}</option>
+                                                        <option value="A" {{isset($type_permis) ? ($type_permis =="A"?'selected':''):''}}>A</option>
+                                                        <option value="B" {{isset($type_permis) ? ($type_permis =="B"?'selected':''):''}}>B</option>
+                                                        <option value="C" {{isset($type_permis) ? ($type_permis =="C"?'selected':''):''}}>C</option>
+                                                        <option value="D" {{isset($type_permis) ? ($type_permis =="D"?'selected':''):''}}>D</option>
+                                                        <option value="E" {{isset($type_permis) ? ($type_permis =="E"?'selected':''):''}}>E</option>
+                                                        <option value="F" {{isset($type_permis) ? ($type_permis =="F"?'selected':''):''}}>F</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -49,7 +55,9 @@
                                                 <div class="form-group">
                                                     <label for="validationCustom01"><strong>Intitulé</strong></label>
                                                     <input name='intitule' type="text" class="form-control"
-                                                        id="validationCustom02" placeholder="intitulé"required>
+                                                        id="validationCustom02"
+                                                        value="{{ isset($session) ? $session->intitule : "" }}" 
+                                                        placeholder="intitulé">
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
@@ -62,7 +70,7 @@
 
 
                                                 </p>
-                                                <button type="submit" class="btn  btn-primary">{{ __('Enregistrer') }}</button>
+                                                <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
                                             </div>
                                         </div>
                                     </form>
@@ -85,7 +93,6 @@
                                         <th>N°</th>
                                         <th>Type de Permis</th>
                                         <th>Intitulé</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,12 +102,17 @@
                                             <td>{{ $session->type_permis }}</td>
                                             <td>{{ $session->intitule }}</td>
                                             <td>
-                                                <a href="{{ url('edit/'.$session->id) }}" class="btn btn-success">Edit</a>
                                                 <form action="{{ route('session.delete', $session) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>                                            </td>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('session.edit', $session) }}" method="GET">
+                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

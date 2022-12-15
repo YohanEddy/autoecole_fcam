@@ -15,11 +15,16 @@ class ApprenantController extends Controller
 
     public function inscription1()
     {
-        $sesions = session::all();
-        return view('inscription1', compact('sesions'));
+        $sessions = session::all();
+        return view('inscription1', compact('sessions'));
     }
     
-
+    public function edit(apprenant $apprenant)
+    {
+        $sessions = session::all();
+        $apprenants = apprenant::all();
+        return view('inscription1', compact("apprenants", "sessions"));
+    }
 
     public const inscription = '/form';
 

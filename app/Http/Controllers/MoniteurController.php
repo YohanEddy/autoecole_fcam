@@ -39,6 +39,17 @@ class MoniteurController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom_moniteur' => 'required',
+            'prenom_moniteur' => 'required',
+            'sexe' => 'required',
+            'date_naiss'=>'required',
+            'lieunaiss' => 'required',
+            'domicile_moniteur' => 'required',
+            'nationalite' => 'required',
+            'email' => 'required|email',
+            'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
+         ]);
         $moniteur = new Moniteur;
         $moniteur->nom_moniteur = $request->nom_moniteur;
         $moniteur->prenom_moniteur = $request->prenom_moniteur;
@@ -89,18 +100,22 @@ class MoniteurController extends Controller
      */
     public function update(Request $request, moniteur $moniteur)
     {
-        $moniteur->update([
-            "nom_moniteur" => $request->nom_moniteur,
-            "prenom_moniteur" => $request->prenom_moniteur,
-            "sexe" => $request->sexe,
-            "date_naiss" => $request->date_naiss,
-            "lieunaiss" => $request->lieunaiss,
-            "domicile_moniteur" => $request->domicile_moniteur,
-            "telephone" => $request->telephone,
-            "nationalite" => $request->nationalite,
-            "email" => $request->email,
-        ]);
-        
+        $message = "";
+        $message_type = "";
+        $request->validate([
+            'nom_moniteur' => 'required',
+            'prenom_moniteur' => 'required',
+            'sexe' => 'required',
+            'date_naiss'=>'required',
+            'lieunaiss' => 'required',
+            'domicile_moniteur' => 'required',
+            'nationalite' => 'required',
+            'email' => 'required|email',
+            'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
+         ]);
+        // if($validator->fails()){
+        //     return redirect()->route('moniteur')->withErrors($validator)->withInput();
+        // }
         $moniteur->nom_moniteur = $request->nom_moniteur;
         $moniteur->prenom_moniteur = $request->prenom_moniteur;
         $moniteur->sexe = $request->sexe;
@@ -111,15 +126,16 @@ class MoniteurController extends Controller
         $moniteur->nationalite = $request->nationalite;
         $moniteur->email = $request->email;
 
-        $moniteur->update();
-        return redirect()->route('moniteur');
+        $resultat = $moniteur->update();
+        if($resultat == true){
+            $message_type = 'success';
+            $message = "Operation effectuer avec succès.";
+        }else{
+            // message d'echec
+        }
+        return redirect()->route('moniteur')->with($message_type, $message);
     }
-    /*public function update(Request $request): Response
-    {
-        $moniteur = Moniteur::find($request->id);
-        return response($moniteur);
-        return redirect()->route('moniteur');
-    }*/
+
 
     /**
      * Remove the specified resource from storage.

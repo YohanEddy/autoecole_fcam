@@ -29,7 +29,12 @@
                         <div class="card-body">
                             <h5><strong>Formulaire d'inscription</strong></h5>
                             <hr>
-                            <form action="{{ route('apprenant.store') }}" method="post">
+                            @if(!isset($apprenant))
+                                <form action="{{ route('apprenant.store') }}" method="post">
+                            @else
+                                <form action="{{ route('apprenant.update') }}" method="POST" enctype="multipart/form-data">
+                                    @method('PUT')
+                            @endif
                                 @csrf
                                 <div class="row">
                                     <div class="col-6">
@@ -37,7 +42,8 @@
                                             <label for="exampleFormControlSelect8"><strong>Date
                                                     d'inscription</strong></label>
                                             <input type="date" name='date_inscrip' class="form-control"
-                                                id="validationCustom08" placeholder=""required>
+                                                value="{{ isset($apprenant) ? $apprenant->date_inscrip : "" }}"
+                                                id="validationCustom08" placeholder="">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -45,7 +51,8 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>Nom de Famille</strong></label>
                                             <input type="text" name='nameapp' class="form-control" id="validationCustom01"
-                                                placeholder="Nom de Fammille" required>
+                                                value="{{ isset($apprenant) ? $apprenant->nameapp : "" }}"
+                                                placeholder="Nom de Fammille">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -53,6 +60,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>Prenoms</strong></label>
                                             <input type="text" name='prenomapp' class="form-control" id="validationCustom02"
+                                                value="{{ isset($apprenant) ? $apprenant->prenomapp : "" }}"
                                                 placeholder="Prenoms"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -69,6 +77,7 @@
                                             <label for="exampleFormControlSelect3"><strong>Date de
                                                     naissance</strong></label>
                                             <input type="date" name='datenaiss' class="form-control" id="validationCustom03"
+                                            value="{{ isset($apprenant) ? $apprenant->datenaiss : "" }}"
                                                 placeholder="Date de naissance"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -77,6 +86,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom04"><strong>Lieu de Naissance</strong></label>
                                             <input type="text" name='lieunaiss' class="form-control" id="validationCustom04"
+                                            value="{{ isset($apprenant) ? $apprenant->lieunaiss : "" }}"
                                                 placeholder="Lieu de naissance"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -85,6 +95,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom03"><strong>Profession</strong></label>
                                             <input type="text" name='profession' class="form-control" id="validationCustom03"
+                                            value="{{ isset($apprenant) ? $apprenant->profession : "" }}"
                                                 placeholder="Profession"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -93,6 +104,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom05"><strong>Nationalité</strong></label>
                                             <input type="text" name='nationalite' class="form-control"
+                                            value="{{ isset($apprenant) ? $apprenant->nationalite : "" }}"
                                                 id="validationCustom05" placeholder="Nationalité"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -103,6 +115,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom05"><strong>Période</strong></label>
                                             <input type="text" name='periode' class="form-control"
+                                            value="{{ isset($inscrire) ? $inscrire->periode : "" }}"
                                                 id="validationCustom05" placeholder="Période"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -111,6 +124,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom05"><strong>Modalité</strong></label>
                                             <input type="text" name='modalite' class="form-control"
+                                            value="{{ isset($inscrire) ? $inscrire->modalite : "" }}"
                                                 id="validationCustom05" placeholder="Modalité"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -119,7 +133,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom05"><strong>Session</strong></label>
                                             <select class="form-control" id="exampleFormControlSelect1" name='session'>
-                                                @foreach($sesions as $session)
+                                                @foreach($sessions as $session)
                                                     <option value="{{$session->id}}">{{ $session->intitule }}</option>
                                                 @endforeach
                                             </select>
@@ -130,6 +144,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom07"><strong>Téléphone</strong></label>
                                             <input type="text" name='telephone' class="form-control" id="validationCustom07"
+                                            value="{{ isset($apprenant) ? $apprenant->telephone : "" }}"
                                                 placeholder="Téléphone"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -138,6 +153,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom06"><strong>Adresse du Domicile</strong></label>
                                             <input type="text" name='domicile' class="form-control"
+                                            value="{{ isset($apprenant) ? $apprenant->domicile : "" }}"
                                                 id="validationCustom06" placeholder="Adresse du domicile"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -146,6 +162,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"><strong>Adresse Mail</strong></label>
                                             <input type="email" name='email' class="form-control"
+                                            value="{{ isset($apprenant) ? $apprenant->email : "" }}"
                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
                                                 placeholder="Entrez l'email">
                                         </div>
@@ -153,6 +170,7 @@
                                             <label for="attente"><strong>Vos attentes pour la formation de code et
                                                     conduite</strong></label>
                                             <input type="text" name='attentes' class="form-control" id="attente"
+                                            value="{{ isset($apprenant) ? $apprenant->attentes : "" }}"
                                                 placeholder="Vos attentes"required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -162,6 +180,7 @@
                                             <label for="attente"><strong>Comment avez vous eu connaissance de notre centre
                                                     de formation auto et moto ?</strong></label>
                                             <input type="text" name='cnxance_centre' class="form-control" id="attente"
+                                            value="{{ isset($apprenant) ? $apprenant->cnxance_centre : "" }}"
                                                 placeholder=""required>
                                             <div class="valid-feedback">
                                                 Looks good!
