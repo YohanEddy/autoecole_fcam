@@ -29,7 +29,12 @@
                         <div class="card-body">
                             <h5>Effectuer un paiement</h5>
                             <hr>
+                            @if (!isset($paiement)) 
                             <form action="{{ route('paiement.store') }}" method="post">
+                            @else
+                            <form action="{{ route('paiement.update', $paiement) }}" method="post" enctype="multipart/form-data">
+                                @method('PUT')
+                            @endif
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -44,21 +49,27 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>Montant</strong></label>
                                             <input name="montant" type="text" class="form-control" id="validationCustom02"
-                                                placeholder="Montant"required>
+                                                placeholder="Montant"required
+                                                value="{{ isset($paiement) ? $paiement->montant : "" }}">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div>
                                             <p></p>
+                                            @if(!isset($paiement))
                                             <button type="submit" class="btn  btn-primary">{{ __('Effectuer') }}</button>
+                                            @else
+                                            <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect3"><strong>Date de Paiement</strong></label>
                                             <input name="datepaiement" type="datetime-local" class="form-control" id="validationCustom03"
-                                                placeholder="Date de paiement"required>
+                                                placeholder="Date de paiement"required
+                                                value="{{ isset($paiement) ? $paiement->datepaiement : "" }}">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -97,6 +108,18 @@
                                         <td>{{ $paiement->apprenant->nameapp." ".$paiement->apprenant->prenomapp }}</td>
                                         <td>{{ $paiement->datepaiement }}</td>
                                         <td>{{ $paiement->montant }}</td>
+                                        <td>
+                                            <form action="{{ route('paiement.delete', $paiement) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('paiement.edit', $paiement) }}" method="GET">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </form>
+                                        </td>
                                     </tr>
 
                                     @endforeach
@@ -106,7 +129,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 @endsection

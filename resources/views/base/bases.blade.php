@@ -72,17 +72,24 @@
 					    <a href="{{ route('session') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Session</span></a>
 					</li>
                     <li class="nav-item">
-					    <a href="{{ route('pgr-cour') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Cours</span></a>
+					    <a href="{{ route('cour') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Cours</span></a>
 					</li>
 					<li class="nav-item">
 					    <a href="{{ route('participer') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Programmer un cour</span></a>
 					</li>
+					{{-- <li class="nav-item"> --}}
+					    {{-- <a href="{{ route('list_app') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Listes</span></a> --}}
+					{{-- </li> --}}
+					<li class="nav-item pcoded-menu-caption">
+					    <label>NETIS</label>
+					</li>
 					<li class="nav-item">
-					    <a href="{{ route('tableau') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Listes</span></a>
+					    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Programmer un cour</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Paramètres</label>
 					</li>
+
 					<li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings m-r-5"></i></span><span class="pcoded-mtext">Settings</span></a>
 					    <ul class="pcoded-submenu">

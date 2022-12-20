@@ -11,6 +11,7 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\ListInscriController;
 use App\Http\Controllers\ParticiperController;
+use App\Http\Controllers\ListApprenantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,13 @@ Route::get('/home', [PostController::class, 'index'])->name('home')->middleware(
 
 Route::get('/apprenant', [ApprenantController::class, 'inscription1'])->name('inscription')->middleware(['auth', 'verified']);
 Route::post('/apprenant',[ApprenantController::class, 'store'])->name('apprenant.store');
-Route::delete('/apprenant/{apprenant}',[ApprenantController::class, 'destroy'])->name('apprenant.delete');
-Route::get('/apprenant/{apprenant}/edit',[ApprenantController::class, 'edit'])->name('apprenant.edit');
-Route::put('/apprenant/{apprenant}',[ApprenantController::class, 'update'])->name('apprenant.update');
+Route::delete('/apprenant/{inscrire}',[ApprenantController::class, 'destroy'])->name('apprenant.delete');
+Route::get('/apprenant/{inscrire}/edit',[ApprenantController::class, 'edit'])->name('apprenant.edit');
+Route::put('/apprenant/{inscrire}',[ApprenantController::class, 'update'])->name('apprenant.update');
 
 Route::get('/list_insc', [ListInscriController::class, 'liste_inscrit'])->name('list_ins')->middleware('auth');
+Route::get('/list_app', [ListApprenantController::class, 'liste_apprenant'])->name('list_app')->middleware('auth');
+
 
 Route::get('/moniteurs', [MoniteurController::class, 'index'])->name('moniteur')->middleware('auth');
 Route::post('/moniteur',[MoniteurController::class, 'store'])->name('moniteur.stores');
@@ -42,28 +45,39 @@ Route::get('/moniteur/{moniteur}/edit',[MoniteurController::class, 'edit'])->nam
 
 Route::get('/paiements', [PaiementController::class, 'paiement'])->name('paiement')->middleware('auth');
 Route::post('/paiement',[PaiementController::class, 'store'])->name('paiement.store');
+Route::get('/paiement/{paiement}/edit',[PaiementController::class, 'edit'])->name('paiement.edit');
+Route::put('/paiement/{paiement}', [PaiementController::class, 'update'])->name('paiement.update');
+Route::delete('/paiement/{paiement}',[PaiementController::class, 'destroy'])->name('paiement.delete');
 
 Route::get('/depences', [DepenceController::class, 'depences'])->name('depence')->middleware('auth');
 Route::post('/depence',[DepenceController::class, 'store'])->name('depence.store');
+Route::get('/depence/{depence}/edit',[DepenceController::class, 'edit'])->name('depence.edit');
+Route::put('/depence/{depence}',[DepenceController::class, 'update'])->name('depence.update');
+Route::delete('/depence/{depence}',[DepenceController::class, 'destroy'])->name('depence.delete');
 
 Route::get('/sessions', [SessionController::class, 'session'])->name('session')->middleware('auth');
-Route::post('/session',[SessionController::class, 'store'])->name('session.store');
+Route::post('/session', [SessionController::class, 'store'])->name('session.store');
 Route::get('/session/{session}/edit',[SessionController::class, 'edit'])->name('session.edit');
 Route::delete('/session/{session}',[SessionController::class, 'destroy'])->name('session.delete');
 Route::put('/session/{session}',[SessionController::class, 'update'])->name('session.update');
 
 Route::get('/participers', [ParticiperController::class, 'participer'])->name('participer')->middleware('auth');
 Route::post('/participer', [ParticiperController::class, 'store'])->name('participer.store');
+Route::get('/participer/{participer}/edit',[ParticiperController::class, 'edit'])->name('participer.edit');
+Route::put('/participer/{participer}',[ParticiperController::class, 'update'])->name('participer.update');
+Route::delete('/participer/{participer}',[ParticiperController::class, 'destroy'])->name('participer.delete');
 
 Route::get('/fiche_payes', [SalaireController::class, 'ficheSalaire'])->name('fiche_paye')->middleware('auth');
 Route::post('/fiche_paye', [SalaireController::class, 'store'])->name('fiche_paye.store');
 
-Route::get('/tbl', [PostController::class, 'tbl_bootstrap'])->name('tableau')->middleware('auth');
 
 Route::get('/sampleP', [PostController::class, 'sample_page'])->name('sample')->middleware('auth');
 
-Route::get('/programmer_cour', [CourController::class, 'pgr_cour'])->name('pgr-cour')->middleware('auth');
-Route::post('/programmer_cours',[CourController::class, 'store'])->name('pgr_cour.store');
+Route::get('/cours', [CourController::class, 'cour'])->name('cour')->middleware('auth');
+Route::post('/cour',[CourController::class, 'store'])->name('cour.store');
+Route::get('/cour/{cour}/edit',[ CourController::class, 'edit'])->name('cour.edit');
+Route::put('/cour/{cour}',[ CourController::class, 'update'])->name('cour.update');
+Route::delete('/cour/{cour}',[ CourController::class, 'destroy'])->name('cour.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

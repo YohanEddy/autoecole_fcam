@@ -32,8 +32,12 @@
                         <h5>Nouvelle dépence</h5>
                         <hr>
                         
-                            
-                                <form action="{{ route('depence.store') }}" method="post">
+                            @if(!isset($depence))
+                                <form action="{{ route('depence.store') }}" method="POST">
+                            @else
+                                <form action="{{ route('depence.update', $depence) }}" method="POST" enctype="multipart/form-data">
+                                    @method('PUT')
+                            @endif
                                     @csrf
                                     <div class="row">
                                         <div class="col-6">
@@ -46,7 +50,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="validationCustom01"><strong>Montant</strong></label>
-                                                <input name='montant' type="text" class="form-control" id="validationCustom02" placeholder="montant"required>
+                                                <input name='montant' type="text" class="form-control" id="validationCustom02" placeholder="montant"required
+                                                value="{{ isset($depence) ? $depence->montant : "" }}">
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
@@ -55,13 +60,18 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="validationCustom01"><strong>Libellé</strong></label>
-                                                <input name='libelle' type="text" class="form-control" id="validationCustom02" placeholder="libellé"required>
+                                                <input name='libelle' type="text" class="form-control" id="validationCustom02" placeholder="libellé"required
+                                                value="{{ isset($depence) ? $depence->libelle : "" }}">
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
                                             </div>
                                             <div>
+                                                @if (isset($depence))
                                                 <button type="submit" class="btn  btn-primary">{{ __('Effectuer') }}</button>
+                                                @else
+                                                <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                                @endif;
                                             </div>
                                         </div>
                                     </div>
@@ -99,6 +109,18 @@
                                         <td>{{ $depence->montant }}</td>
                                         <td>{{ $depence->date_depence }}</td>
                                         <td>{{ $depence->user->name }}</td>
+                                        <td>
+                                            <form action="{{ route('depence.delete', $depence) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('depence.edit', $depence) }}" method="GET">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -27,15 +27,20 @@
             <div class="card-body">
                 <h5>Cour</h5>
                 <hr>
-                        <form action="{{ route('pgr_cour.store') }}" method="post">
+                    @if(!isset($cour))
+                        <form action="{{ route('cour.store') }}" method="post">
+                    @else
+                        <form action="{{ route('cour.update', $cour) }}" method="post">
+                            @method ('PUT')
+                    @endif
                             @csrf
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Type de cour</strong></label>
                                         <select name='type_cour'class="form-control" id="exampleFormControlSelect1">
-                                            <option value ="code">Code</option>
-                                            <option value ="conduite">Conduite</option>
+                                            <option value ="code" {{ (isset($cour) && ($cour->type_cour =="code")) ? 'selected' : '' }}>Code</option>
+                                            <option value ="conduite" {{ (isset($cour) && ($cour->type_cour =="conduite")) ? 'selected' : '' }}>Conduite</option>
                                         </select>
                                     </div>
                                 </div>
@@ -43,7 +48,8 @@
                                     <div class="form-group">
                                         <label for="validationCustom01"><strong>Libellé</strong></label>
                                         <input name='lib_cour' type="text" class="form-control"
-                                            id="validationCustom02" placeholder="intitulé"required>
+                                            id="validationCustom02" placeholder="intitulé"required
+                                            value="{{ isset($cour) ? $cour->lib_cour : "" }}">
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
@@ -55,7 +61,11 @@
 
 
                                     </p>
+                                    @if(!isset($cour))
                                     <button type="submit" class="btn  btn-primary">{{ __('Enregistrer') }}</button>
+                                    @else
+                                    <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                    @endif;
                                 </div>
                             </div>
                         </form>
@@ -86,6 +96,19 @@
                                 <td>{{ $cour->id }}</td>
                                 <td>{{ $cour->lib_cour }}</td>
                                 <td>{{ $cour->type_cour }}</td>
+                                <td>
+                                    <form action="{{ route('cour.delete', $cour) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ route('cour.edit', $cour) }}" method="GET">
+                                        <button type="submit" class="btn btn-success">Update</button>
+                                    </form>
+                                </td>
+                            </tr>
                             </tr>
                         @endforeach
                     </tbody>

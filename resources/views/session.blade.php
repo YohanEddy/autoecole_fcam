@@ -32,8 +32,9 @@
                                     @if(!isset($session))
                                         <form action="{{ route('session.store') }}" method="POST">
                                     @else
-                                        <form action="{{ route('session.update') }}" method= "POST" enctype="multipart/form-data">
-                                        @method('PUT')
+                                        <form action="{{ route('session.update', $session) }}" method= "POST" enctype="multipart/form-data">
+                                        <!--input type="hidden" name="_method" value="PUT"-->
+                                            @method('PUT')
                                     @endif
                                         @csrf
                                         <div class="row">
@@ -41,22 +42,21 @@
                                                 <div class="form-group">
                                                     <label for="exampleFormControlSelect1"><strong>Type de permis</strong></label>
                                                     <select name='type_permis'class="form-control" id="exampleFormControlSelect1">
-                                                        <option value="{{ $session->session_id }}" {{ isset($type_permis) ? (in_array($session->id,$type_permis)? 'selected':''): ''}}>{{$session->type_permis}}</option>
-                                                        <option value="A" {{isset($type_permis) ? ($type_permis =="A"?'selected':''):''}}>A</option>
-                                                        <option value="B" {{isset($type_permis) ? ($type_permis =="B"?'selected':''):''}}>B</option>
-                                                        <option value="C" {{isset($type_permis) ? ($type_permis =="C"?'selected':''):''}}>C</option>
-                                                        <option value="D" {{isset($type_permis) ? ($type_permis =="D"?'selected':''):''}}>D</option>
-                                                        <option value="E" {{isset($type_permis) ? ($type_permis =="E"?'selected':''):''}}>E</option>
-                                                        <option value="F" {{isset($type_permis) ? ($type_permis =="F"?'selected':''):''}}>F</option>
-                                                    </select>
+                                                        <option value="A" {{ (isset($session) && ($session->type_permis =="A")) ? 'selected' : '' }}>A</option>
+                                                        <option value="B" {{ (isset($session) && ($session->type_permis =="B")) ? 'selected' : '' }}>B</option>
+                                                        <option value="C" {{ (isset($session) && ($session->type_permis =="C")) ? 'selected' : '' }}>C</option>
+                                                        <option value="D" {{ (isset($session) && ($session->type_permis =="D")) ? 'selected' : '' }}>D</option>
+                                                        <option value="E" {{ (isset($session) && ($session->type_permis =="E")) ? 'selected' : '' }}>E</option>
+                                                        <option value="F" {{ (isset($session) && ($session->type_permis =="F")) ? 'selected' : '' }}>F</option>
+                                                    </select>    
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="validationCustom01"><strong>Intitulé</strong></label>
                                                     <input name='intitule' type="text" class="form-control"
+                                                    value="{{ isset($session) ? $session->intitule : "" }}"
                                                         id="validationCustom02"
-                                                        value="{{ isset($session) ? $session->intitule : "" }}" 
                                                         placeholder="intitulé">
                                                     <div class="valid-feedback">
                                                         Looks good!
@@ -70,7 +70,11 @@
 
 
                                                 </p>
+                                                @if(!isset($session))
                                                 <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
+                                                @else
+                                                <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                                @endif;
                                             </div>
                                         </div>
                                     </form>

@@ -13,14 +13,14 @@ class DepenceController extends Controller
     public function depences()
     {
         $depences = Depence::all();
-        return view('depences' , compact('depences'));
+        return view('depences', compact('depences'));
     }
 
     public const depence = '/depence';
 
     public function store(Request $request)
     {
-        $depence = new Depence;
+        $depence = new Depence();
         $depence->libelle = $request->libelle;
         $depence->montant = $request->montant;
         $depence->date_depence = $request->date_depence;
@@ -30,5 +30,44 @@ class DepenceController extends Controller
 
         return redirect()->route('depence');
     }
-}
 
+    public function edit(depence $depence)
+    {
+        $depences = depence::all();
+        return view('depences', compact("depences", "depence"));
+    }
+
+    public function update(Request $request, depence $depence)
+    {
+        $message = "";
+        $message_type = "";
+        $request->validate([
+            'montant' => 'required',
+            'libelle' => 'required',
+            'date_depence' => 'required',
+        ]);
+
+        $depence->libelle = $request->libelle;
+        $depence->montant = $request->montant;
+        $depence->date_depence = $request->date_depence;
+        $depence->user_id = Auth::id();
+
+        $depence->update();
+        $resultat = $depence->update();
+        if($resultat == true){
+            $message_type = 'success';
+            $message = "Operation effectuer avec succès.";
+        }else{
+            // message d'echec
+        }
+        return redirect()->route('depence')->with($message_type, $message);
+    }
+
+    public function destroy(depence $depence)
+    {
+        //$depence->users()->delete();
+        $depence->delete();
+        
+        return redirect()->route('depence');
+    }
+}

@@ -8,7 +8,7 @@
 <div class="page-header">
     <div class="page-block">
         <div class="row align-items-center">
-            < class="col-md-12">
+            <div class="col-md-12">
                 <div class="page-header-title">
                     <h3 class="m-b-10">FCAM</h3>
                 </div>
@@ -38,11 +38,7 @@
                                         <th>Nom de famille</th>
                                         <th>Prénoms</th>
                                         <th>Sexe</th>
-                                        <th>Date de naissance</th>
-                                        <th>Lieu de naissance</th>
                                         <th>Add du domicile</th>
-                                        <th>Profession</th>
-                                        <th>Nationalité</th>
                                         <th>Téléphone</th>
                                         <th>Email</th>
                                         <th>Attentes</th>
@@ -50,31 +46,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($apprenants as $apprenant)
+                                    @foreach ($inscrires as $inscrire)
                                     <tr>
                                         
-                                        <td>{{ $apprenant->id }}</td>
-                                        <td>{{ $apprenant->nameapp }}</td>
-                                        <td>{{ $apprenant->prenomapp }}</td>
-                                        <td>{{ $apprenant->sexe }}</td>
-                                        <td>{{ $apprenant->datenaiss }}</td>
-                                        <td>{{ $apprenant->lieunaiss }}</td>
-                                        <td>{{ $apprenant->domicile }}</td>
-                                        <td>{{ $apprenant->profession }}</td>
-                                        <td>{{ $apprenant->nationalite }}</td>
-                                        <td>{{ $apprenant->telephone }}</td>
-                                        <td>{{ $apprenant->email }}</td>
-                                        <td>{{ $apprenant->attentes }}</td>
-                                        <td>{{ $apprenant->date_inscrip }}</td>
+                                        <td>{{ $inscrire->apprenant->id }}</td>
+                                        <td>{{ $inscrire->apprenant->nameapp }}</td>
+                                        <td>{{ $inscrire->apprenant->prenomapp }}</td>
+                                        <td>{{ $inscrire->apprenant->sexe }}</td>
+                                        <td>{{ $inscrire->apprenant->domicile }}</td>
+                                        <td>{{ $inscrire->apprenant->telephone }}</td>
+                                        <td>{{ $inscrire->apprenant->email }}</td>
+                                        <td>{{ $inscrire->apprenant->attentes }}</td>
+                                        <td>{{ $inscrire->apprenant->date_inscrip }}</td>
                                         <td>
-                                            <form action="{{ route('apprenant.delete', $apprenant) }}" method="POST">
+                                            <form action="{{ route('apprenant.delete', $inscrire) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('apprenant.edit', $apprenant) }}" method="GET">
+                                            <form action="{{ route('apprenant.edit', $inscrire) }}" method="GET">
                                                 <button type="submit" class="btn btn-success">Update</button>
                                             </form>
                                         </td>

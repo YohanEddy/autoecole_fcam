@@ -17,19 +17,9 @@ class PostController extends Controller
         return view('index');
     }
 
-
-
-
-
-
     public function authentification()
     {
         return view('authentification');
-    }
-
-    public function tbl_bootstrap()
-    {
-        return view('tbl_bootstrap');
     }
 
     public function sample_page()

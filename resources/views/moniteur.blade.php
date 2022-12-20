@@ -125,7 +125,11 @@
                                         </div>
                                     </div>
                                     <p></p>
+                                    @if(!isset($moniteur))
                                     <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
+                                    @else
+                                    <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                    @endif;
                                 </div>
                             </form>
                         </div>

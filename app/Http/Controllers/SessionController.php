@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\session;
 use Illuminate\Http\Request;
-
+//Miss Guadeloupe
 
 class SessionController extends Controller
 {
     //
     public function session()
     {
-        //$session = session::all();
         $sessions = session::all();
-        return view('session', compact('sessions', 'session'));
+        return view('session', compact('sessions'));
     }
 
     //public const session = '/sessions';
@@ -28,13 +27,12 @@ class SessionController extends Controller
 
         return redirect()->route('session');
     }
+  
 
     public function edit(session $session)
     {
-        
-        //$session = session::findOrFail($session);
         $sessions = session::all();
-        return view('session', compact( "sessions" ));
+        return view('session', compact("sessions", "session"));
     }
 
     public function update(Request $request, session $session)
@@ -48,6 +46,7 @@ class SessionController extends Controller
         $session->type_permis = $request->type_permis;
         $session->intitule = $request->intitule;
 
+        $session->update();
         $resultat = $session->update();
         if($resultat == true){
             $message_type = 'success';

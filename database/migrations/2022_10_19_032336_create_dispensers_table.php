@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('dispensers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('moniteur_id');
-            $table->foreign('moniteur_id')->references('id')->on('moniteurs');
+            $table->foreign('moniteur_id')->references('id')->on('moniteurs')->onDelete('cascade');
             $table->unsignedBigInteger('cour_id');
-            $table->foreign('cour_id')->references('id')->on('cours');
+            $table->foreign('cour_id')->references('id')->on('cours')->onDelete('cascade');
             $table->timestamps();
         });
     }

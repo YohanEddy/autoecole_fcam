@@ -27,7 +27,12 @@
             <div class="card-body">
                 <h5>Programmer un cour</h5>
                 <hr>
+                    @if(!isset($participer))
                         <form action="{{ route('participer.store') }}" method="post">
+                    @else
+                        <form action="{{ route('participer.update', $participer) }}" method="post" enctype="multipart/form-data">
+                            @method('PUT')
+                    @endif
                             @csrf
                             <div class="row">
                                 
@@ -35,8 +40,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Client</strong></label>
                                         <select name='apprenant_id'class="form-control" id="exampleFormControlSelect1">
-                                            @foreach($apprenants as $apprenant)
-                                            <option value="{{$apprenant->id}}">{{ $apprenant->nameapp." ".$apprenant->prenomapp }}</option>
+                                            @foreach($participers as $participer)
+                                            <option value="{{$participer->apprenant->id}}">{{ $participer->apprenant->nameapp." ".$participer->apprenant->prenomapp }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -44,8 +49,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Session</strong></label>
                                         <select name='session_id'class="form-control" id="exampleFormControlSelect1">
-                                            @foreach($sesions as $session)
-                                            <option value="{{$session->id}}">{{ $session->intitule." - ".$session->type_permis }}</option>
+                                            @foreach($participers as $participer)
+                                            <option value="{{$participer->session->id}}">{{ $participer->session->intitule." - ".$participer->session->type_permis }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -54,8 +59,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Cour</strong></label>
                                         <select name='cour_id'class="form-control" id="exampleFormControlSelect1">
-                                            @foreach($cours as $cour)
-                                            <option value="{{$cour->id}}">{{ $cour->type_cour." - ".$cour->lib_cour }}</option>
+                                            @foreach($participers as $participer)
+                                            <option value="{{$participer->cour->id}}">{{ $participer->cour->type_cour." - ".$participer->cour->lib_cour }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -74,7 +79,11 @@
 
 
                                     </p>
-                                    <button type="submit" class="btn  btn-primary">{{ __('Enregistrer') }}</button>
+                                    @if(!isset($participer))
+                                    <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
+                                    @else
+                                    <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                    @endif;
                                 </div>
                             </div>
                         </form>
@@ -103,13 +112,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($par as $participer)
+                        @foreach ($participers as $participer)
                             <tr>
                                 <td>{{ $participer->id }}</td>
                                 <td>{{ $participer->apprenant->nameapp." ".$participer->apprenant->prenomapp }}</td>
                                 <td>{{ $participer->session->intitule." - ".$participer->session->type_permis }}</td>
                                 <td>{{ $participer->cour->type_cour." - ".$participer->cour->lib_cour }}</td>
                                 <td>{{ $participer->date_cour }}</td>
+                                <td>
+                                    <form action="{{ route('participer.delete', $participer) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ route('participer.edit', $participer) }}" method="GET">
+                                        <button type="submit" class="btn btn-success">Update</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -11,13 +11,13 @@ use Illuminate\Http\Request;
 
 class CourController extends Controller
 {
-    public function pgr_cour()
+    public function cour()
     {
         $cours = cour::all();
-        return view('pgr_cour', compact('cours'));
+        return view('cour', compact('cours'));
     }
 
-    public const cour = '/programmer_cours';
+    //public const cour = '/pcours';
 
     public function store(Request $request)
     {
@@ -28,6 +28,43 @@ class CourController extends Controller
         $cour->save();
         
 
-        return redirect()->route('pgr-cour');
+        return redirect()->route('cour');
+    }
+
+    public function edit(cour $cour)
+    {
+        $cours = cour::all();
+        return view('cour', compact("cours", "cour"));
+    }
+
+    public function update(Request $request, cour $cour)
+    {
+        $message = "";
+        $message_type = "";
+        $request->validate([
+            'type_cour' => 'required',
+            'lib_cour' => 'required'
+        ]);
+
+        $cour->type_cour = $request->type_cour;
+        $cour->lib_cour = $request->lib_cour;
+
+        $cour->update();
+        $resultat = $cour->update();
+        if($resultat == true){
+            $message_type = 'success';
+            $message = "Operation effectuer avec succès.";
+        }else{
+            // message d'echec
+        }
+        return redirect()->route('cour')->with($message_type, $message);
+    }
+
+    public function destroy(cour $cour)
+    {
+        //$cour->apprenants()->delete();
+        $cour->delete();
+        
+        return redirect()->route('cour');
     }
 }
