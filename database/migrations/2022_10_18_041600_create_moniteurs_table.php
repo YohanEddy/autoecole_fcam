@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('moniteurs', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule');
+            $table->string('matricule')->unique();
             $table->string('nom_moniteur');
             $table->string('prenom_moniteur');
             $table->string('sexe');

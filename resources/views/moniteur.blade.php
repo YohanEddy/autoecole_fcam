@@ -40,6 +40,15 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
+                                            <label for="validationCustom01"><strong>Matricule</strong></label>
+                                            <input type="text" name="matricule" class="form-control"
+                                                id="validationCustom01" placeholder="Matricule" 
+                                                value="{{ isset($moniteur) ? $moniteur->matricule : "" }}">
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="validationCustom01"><strong>Nom de Famille</strong></label>
                                             <input type="text" name="nom_moniteur" class="form-control"
                                                 id="validationCustom01" placeholder="Nom de Fammille" 

@@ -40,6 +40,7 @@ class MoniteurController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'matricule' => 'required|unique:moniteurs',
             'nom_moniteur' => 'required',
             'prenom_moniteur' => 'required',
             'sexe' => 'required',
@@ -111,7 +112,7 @@ class MoniteurController extends Controller
             'lieunaiss' => 'required',
             'domicile_moniteur' => 'required',
             'nationalite' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:moniteurs',
             'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
          ]);
         // if($validator->fails()){
