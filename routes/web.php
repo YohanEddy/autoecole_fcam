@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourController;
+use App\Http\Controllers\EtatController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DepenceController;
 use App\Http\Controllers\SalaireController;
@@ -36,6 +37,11 @@ Route::put('/apprenant/{inscrire}',[ApprenantController::class, 'update'])->name
 Route::get('/list_insc', [ListInscriController::class, 'liste_inscrit'])->name('list_ins')->middleware('auth');
 Route::get('/list_app', [ListApprenantController::class, 'liste_apprenant'])->name('list_app')->middleware('auth');
 
+Route::get('/etat_moniteur', [EtatController::class, 'moniteur'])->name('etat_moniteur')->middleware('auth');
+Route::get('/etat_session', [EtatController::class, 'session'])->name('etat_session')->middleware('auth');
+Route::get('/etat_apprenant', [EtatController::class, 'apprenant'])->name('etat_apprenant')->middleware('auth');
+Route::get('/etat_depense', [EtatController::class, 'depense'])->name('etat_depense')->middleware('auth');
+
 
 Route::get('/moniteurs', [MoniteurController::class, 'index'])->name('moniteur')->middleware('auth');
 Route::post('/moniteur',[MoniteurController::class, 'store'])->name('moniteur.stores');
@@ -67,8 +73,11 @@ Route::get('/participer/{participer}/edit',[ParticiperController::class, 'edit']
 Route::put('/participer/{participer}',[ParticiperController::class, 'update'])->name('participer.update');
 Route::delete('/participer/{participer}',[ParticiperController::class, 'destroy'])->name('participer.delete');
 
-Route::get('/fiche_payes', [SalaireController::class, 'ficheSalaire'])->name('fiche_paye')->middleware('auth');
+Route::get('/fiche_payes', [SalaireController::class, 'index'])->name('fiche_paye')->middleware('auth');
 Route::post('/fiche_paye', [SalaireController::class, 'store'])->name('fiche_paye.store');
+Route::put('/fichsalaire/{fichesalaire}',[SalaireController::class, 'update'])->name('fiche_paye.update');//moniteur.delete
+Route::delete('/fichesalaire/{fichesalaire}',[SalaireController::class, 'destroy'])->name('fiche_paye.delete');
+Route::get('/fichesalaire/{fichesalaire}/edit',[SalaireController::class, 'edit'])->name('fiche_paye.edit');
 
 
 Route::get('/sampleP', [PostController::class, 'sample_page'])->name('sample')->middleware('auth');

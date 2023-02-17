@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('attentes', 500);
             $table->string('cnxance_centre', 500);
-            $table->string('permis');
             $table->date('date_inscrip');
             $table->timestamps();
         });

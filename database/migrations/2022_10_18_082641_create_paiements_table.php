@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('datepaiement');
             $table->unsignedInteger('montant');
+            $table->unsignedInteger('montant_du');
             $table->timestamps();
 
             $table->unsignedBigInteger('apprenant_id');

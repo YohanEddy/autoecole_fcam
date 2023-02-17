@@ -10,8 +10,8 @@ class paiement extends Model
 {
     use HasFactory;
 
-    public function apprenant()
-    {
-        return $this->belongsTo(apprenant::class);
-    }
+        public function apprenant()
+        {
+            return $this->belongsTo(apprenant::class);
+        }
 }

@@ -65,7 +65,7 @@
                                     <button type="submit" class="btn  btn-primary">{{ __('Enregistrer') }}</button>
                                     @else
                                     <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
-                                    @endif;
+                                    @endif
                                 </div>
                             </div>
                         </form>

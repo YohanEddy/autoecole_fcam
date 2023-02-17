@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\session;
 use Illuminate\Http\Request;
+
 //Miss Guadeloupe
 
 class SessionController extends Controller
 {
     //
+
+
     public function session()
     {
         $sessions = session::all();

@@ -20,6 +20,16 @@ class DepenceController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'montant' => 'required|numeric',
+        ],
+        [
+            'montant.required' => 'Le champ montant est requis.',
+            'montant.numeric' => 'Le champ montant doit contenir un nombre.',
+        ]
+
+        );
+    
         $depence = new Depence();
         $depence->libelle = $request->libelle;
         $depence->montant = $request->montant;

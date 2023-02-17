@@ -103,6 +103,7 @@ class MoniteurController extends Controller
         $message = "";
         $message_type = "";
         $request->validate([
+            'matricule' => 'required|unique:moniteurs',
             'nom_moniteur' => 'required',
             'prenom_moniteur' => 'required',
             'sexe' => 'required',

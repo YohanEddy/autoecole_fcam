@@ -13,10 +13,10 @@ class ParticiperController extends Controller
     public function participer()
     {
         $participers = participer::all();
-        //$apprenants = apprenant::all();
-        //$cours = cour::all();
-        //$sesions = session::all();
-        return view('participer', compact('participers'));
+        $apprenants = apprenant::all();
+        $cours = cour::all();
+        $sessions = session::all();
+        return view('participer', compact('participers', 'apprenants', 'cours', 'sessions'));
     }
 
     //public const participer = '/participers';
@@ -39,8 +39,11 @@ class ParticiperController extends Controller
 
     public function edit(participer $participer)
     {
+        $apprenants = apprenant::all();
+        $sessions = session::all();
+        $cours = cour::all();
         $participers = participer::all();
-        return view('participer', compact("participers", "participer"));
+        return view('participer', compact("participers", "participer", "apprenants","sessions", "cours"));
     }
 
     public function update(Request $request, participer $participer)

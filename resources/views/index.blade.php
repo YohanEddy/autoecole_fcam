@@ -19,6 +19,8 @@
                 </div>
             </div>
         </div>
+        <img src="../images/user/fond.jpg" width="1150" height="1000">
     </div>
 </div>
+    
 @endsection

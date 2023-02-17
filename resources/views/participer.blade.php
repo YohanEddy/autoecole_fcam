@@ -40,8 +40,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Client</strong></label>
                                         <select name='apprenant_id'class="form-control" id="exampleFormControlSelect1">
-                                            @foreach($participers as $participer)
-                                            <option value="{{$participer->apprenant->id}}">{{ $participer->apprenant->nameapp." ".$participer->apprenant->prenomapp }}</option>
+                                            @foreach($apprenants as $apprenant)
+                                            <option value="{{$apprenant->id}}">{{ $apprenant->nameapp." ".$apprenant->prenomapp }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -49,8 +49,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Session</strong></label>
                                         <select name='session_id'class="form-control" id="exampleFormControlSelect1">
-                                            @foreach($participers as $participer)
-                                            <option value="{{$participer->session->id}}">{{ $participer->session->intitule." - ".$participer->session->type_permis }}</option>
+                                            @foreach($sessions as $session)
+                                            <option value="{{$session->id}}">{{ $session->intitule." - ".$session->type_permis }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -59,8 +59,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1"><strong>Cour</strong></label>
                                         <select name='cour_id'class="form-control" id="exampleFormControlSelect1">
-                                            @foreach($participers as $participer)
-                                            <option value="{{$participer->cour->id}}">{{ $participer->cour->type_cour." - ".$participer->cour->lib_cour }}</option>
+                                            @foreach($cours as $cour)
+                                            <option value="{{$cour->id}}">{{$cour->type_cour." - ".$cour->lib_cour }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -83,7 +83,7 @@
                                     <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
                                     @else
                                     <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
-                                    @endif;
+                                    @endif
                                 </div>
                             </div>
                         </form>

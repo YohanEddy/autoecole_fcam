@@ -30,6 +30,10 @@
                     <div class="card-header">
                         <h5>Liste des Apprenants</h5>
                         <span class="d-block m-t-5"> <code></code></span>
+                        <div class="form-group">
+                            <p></p>
+                            <a href=" {{ route('etat_apprenant') }} " class="btn  btn-primary">Download List</a>
+                        </div>
                     </div>
                     <div class="card-body table-border-style">
                         <div class="table-responsive">

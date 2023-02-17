@@ -41,8 +41,10 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1"><strong>Client</strong></label>
                                             <select name="apprenant_id" class="form-control" id="exampleFormControlSelect1">
-                                                @foreach($apprenants as $apprenant)
-                                                    <option value="{{$apprenant->id}}">{{ $apprenant->nameapp." ".$apprenant->prenomapp }}</option>
+                                                @foreach($inscrires as $inscrire)
+                                                    <option value="{{$inscrire->apprenant->id."-".$inscrire->type_formation}}">
+                                                        {{ $inscrire->apprenant->nameapp." ".$inscrire->apprenant->prenomapp }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -55,6 +57,7 @@
                                                 Looks good!
                                             </div>
                                         </div>
+                                        
                                         <div>
                                             <p></p>
                                             @if(!isset($paiement))
@@ -96,7 +99,9 @@
                                         <th>N°</th>
                                         <th>Client</th>
                                         <th>Date de paiement</th>
-                                        <th>Montant</th>
+                                        <th>Montant Du</th>
+                                        <th>Montant payé</th>
+                                        <th>Reste à payer</th>
                                         
                                     </tr>
                                 </thead>
@@ -107,7 +112,11 @@
                                         <td>{{ $paiement->id }}</td>
                                         <td>{{ $paiement->apprenant->nameapp." ".$paiement->apprenant->prenomapp }}</td>
                                         <td>{{ $paiement->datepaiement }}</td>
+                                        <td>{{ $paiement->montant_du }}</td>
                                         <td>{{ $paiement->montant }}</td>
+                                        <td>
+                                            
+                                        </td>
                                         <td>
                                             <form action="{{ route('paiement.delete', $paiement) }}" method="POST">
                                                 @csrf

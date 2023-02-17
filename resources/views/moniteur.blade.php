@@ -129,8 +129,7 @@
                                     <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
                                     @else
                                     <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
-                                    @endif;
-                                </div>
+                                    @endif
                             </form>
                         </div>
                     </div>
@@ -142,6 +141,13 @@
                     <div class="card-header">
                         <h5>Liste des moniteurs</h5>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
+                    </div>
+                    <hr>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <p></p>
+                            <a href=" {{ route('etat_moniteur') }} " class="btn  btn-primary">Download List</a>
+                        </div>
                     </div>
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
@@ -158,7 +164,9 @@
                                         <th>Nationalité</th>
                                         <th>Téléphone</th>
                                         <th>Email</th>
-                                        
+                                        <th>
+                                       
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -189,10 +197,12 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>
                 </div>
+                
             </div>
 
         </div>

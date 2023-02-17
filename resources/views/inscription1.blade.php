@@ -113,6 +113,18 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
+                                            <label for="validationCustom05"><strong>Type de Formation</strong></label>
+                                           
+                                            <select class="form-control" id="exampleFormControlSelect1" name='type_formation'>
+                                                <option value="A">20 leçons de conduite</option>
+                                                <option value="B">15 leçons de conduite</option>
+                                                <option value="C">10 leçons de conduite</option>
+                                            </select>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="validationCustom05"><strong>Période</strong></label>
                                             <input type="text" name='periode' class="form-control"
                                             value="{{ isset($inscrire) ? $inscrire->periode : "" }}"

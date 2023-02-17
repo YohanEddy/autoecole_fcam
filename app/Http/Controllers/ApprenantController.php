@@ -74,6 +74,7 @@ class ApprenantController extends Controller
         $inscrire = new inscrire;
         $inscrire->periode = $request->periode;
         $inscrire->modalite = $request->modalite;
+        $inscrire->type_formation = $request->type_formation;
         $inscrire->session_id = $request->session;
         $apr = DB::table('apprenants')->latest()->first('id');
         
@@ -127,6 +128,7 @@ class ApprenantController extends Controller
 
         $inscrire->periode = $request->periode;
         $inscrire->modalite = $request->modalite;
+        $inscrire->type_formation = $request->type_formation;
         $inscrire->session_id = $request->session;
 
         $inscrire->apprenant->update();

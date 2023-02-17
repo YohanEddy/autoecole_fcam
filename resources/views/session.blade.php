@@ -74,7 +74,7 @@
                                                 <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
                                                 @else
                                                 <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
-                                                @endif;
+                                                @endif
                                             </div>
                                         </div>
                                     </form>
@@ -89,35 +89,41 @@
                         <h5>Les Sessions</h5>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                     </div>
+
+                    <div class="form-group">
+                        <p></p>
+                        <a href=" {{ route('etat_session') }} " class="btn  btn-primary">Download List</a>
+                    </div>
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            
+                            <table class="table table-striped"">
                                 <thead>
                                     <tr>
-                                        <th>N°</th>
-                                        <th>Type de Permis</th>
-                                        <th>Intitulé</th>
+                                        <th scope="col">N°</th>
+                                        <th scope="col">TYPE DE PERMIS</th>
+                                        <th scope="col">INTITULE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($sessions as $session)
-                                        <tr>
-                                            <td>{{ $session->id }}</td>
-                                            <td>{{ $session->type_permis }}</td>
-                                            <td>{{ $session->intitule }}</td>
-                                            <td>
-                                                <form action="{{ route('session.delete', $session) }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('session.edit', $session) }}" method="GET">
-                                                    <button type="submit" class="btn btn-success">Update</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th scope="row">{{ $session->id }}</th>
+                                        <td>{{ $session->type_permis }}</td>
+                                        <td>{{ $session->intitule }}</td>
+                                        <td>
+                                            <form action="{{ route('session.delete', $session) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('session.edit', $session) }}" method="GET">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>

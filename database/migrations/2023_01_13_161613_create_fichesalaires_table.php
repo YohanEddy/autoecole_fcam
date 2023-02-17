@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salaires', function (Blueprint $table) {
+        Schema::create('fichesalaires', function (Blueprint $table) {
             $table->id();
+            $table->date('date_paiement');
+            $table->double('salaire_brut');
+            $table->unsignedInteger('sal_net');
             $table->timestamps();
+
+            $table->unsignedBigInteger('moniteur_id');
+            $table->foreign('moniteur_id')->references('id')->on('moniteurs')->onDelete('cascade');
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salaires');
+        Schema::dropIfExists('fichesalaires');
     }
 };

@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <h5>Nouvelle dépence</h5>
                         <hr>
-                        
+                       
                             @if(!isset($depence))
                                 <form action="{{ route('depence.store') }}" method="POST">
                             @else
@@ -68,10 +68,10 @@
                                             </div>
                                             <div>
                                                 @if (isset($depence))
-                                                <button type="submit" class="btn  btn-primary">{{ __('Effectuer') }}</button>
-                                                @else
                                                 <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
-                                                @endif;
+                                                @else
+                                                <button type="submit" class="btn  btn-primary">{{ __('Effectuer') }}</button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -88,6 +88,10 @@
                     <div class="card-header">
                         <h5>Les Dépences</h5>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
+                        <div class="form-group">
+                            <p></p>
+                            <a href=" {{ route('etat_depense') }} " class="btn  btn-primary">Download List</a>
+                        </div>
                     </div>
                     <div class="card-body table-border-style">
                         <div class="table-responsive">

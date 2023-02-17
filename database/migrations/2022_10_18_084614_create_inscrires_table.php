@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('inscrires', function (Blueprint $table) {
             $table->id();
-            $table->integer('periode');
+            $table->string('periode');
             $table->string('modalite');
+            $table->string('type_formation');
             $table->timestamps();
 
             $table->unsignedBigInteger('apprenant_id');

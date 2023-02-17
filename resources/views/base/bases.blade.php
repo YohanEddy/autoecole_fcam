@@ -14,7 +14,9 @@
     <link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
 
     <!-- vendor css -->
-	<link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}">    
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}"> 
+	<link rel="stylesheet" href="{{ URL::asset('datatable/DataTables/datatables.min.css') }}">   
+	<script src="{{ URL::asset('datatable/DataTables/jQuery-3.6.0/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -31,7 +33,7 @@
 				
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius" src="../images/user/kg.png" alt="User-Profile-Image">
+						<img class="img-radius" src="../images/user/fcam.jpg" alt="User-Profile-Image">
 						<div class="user-details">
 							<div id="more-details">{{ Auth::user()->name }}<i class="fa fa-caret-down"></i></div>
 						</div>
@@ -77,15 +79,7 @@
 					<li class="nav-item">
 					    <a href="{{ route('participer') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Programmer un cour</span></a>
 					</li>
-					{{-- <li class="nav-item"> --}}
-					    {{-- <a href="{{ route('list_app') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Listes</span></a> --}}
-					{{-- </li> --}}
-					<li class="nav-item pcoded-menu-caption">
-					    <label>NETIS</label>
-					</li>
-					<li class="nav-item">
-					    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Programmer un cour</span></a>
-					</li>
+		
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Paramètres</label>
 					</li>
@@ -162,6 +156,9 @@
     <script src="../assets/js/plugins/bootstrap.min.js"></script>
     <script src="../assets/js/ripple.js"></script>
     <script src="../assets/js/pcoded.min.js"></script>
+	<script src="{{ URL::asset('datatable/DataTables/datatables.min.js') }}"></script>
+
+
 
 <!-- Apex Chart -->
 <script src="../js/plugins/apexcharts.min.js"></script>
