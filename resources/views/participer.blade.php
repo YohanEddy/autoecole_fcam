@@ -95,7 +95,11 @@
 <div class="col-xl-12">
     <div class="card">
         <div class="card-header">
-            <h5>Les cours</h5>
+            <h5>Les cours Programmés</h5>
+            <div class="form-group">
+                <p></p>
+                <a href=" {{ route('etat_pgrm_cour') }} " class="btn  btn-primary">Download List</a>
+            </div>
             <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
         </div>
         <div class="card-body table-border-style">
@@ -108,7 +112,8 @@
                             <th>Session</th>
                             <th>Cour</th>
                             <th>Date du cour</th>
-                            
+                            <th>Supprimer</th>
+                            <th>Modifier</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -86,15 +86,7 @@
                                                 Looks good!
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="validationCustom04"><strong>Lieu de Naissance</strong></label>
-                                            <input type="text" name="lieunaiss" class="form-control"
-                                            value="{{ isset($moniteur) ? $moniteur->lieunaiss : "" }}"
-                                                id="validationCustom04" placeholder="Lieu de naissance"required>
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
@@ -132,6 +124,15 @@
                                                 id="exampleInputEmail1" aria-describedby="emailHelp"
                                                 placeholder="Entrez l'email">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom04"><strong>Lieu de Naissance</strong></label>
+                                            <input type="text" name="lieunaiss" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->lieunaiss : "" }}"
+                                                id="validationCustom04" placeholder="Lieu de naissance"required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
                                     </div>
                                     <p></p>
                                     @if(!isset($moniteur))
@@ -164,6 +165,7 @@
                                 <thead>
                                     <tr>
                                         <th>N°</th>
+                                        <th>Matricule</th>
                                         <th>Nom de famille</th>
                                         <th>Prénoms</th>
                                         <th>Sexe</th>
@@ -173,15 +175,15 @@
                                         <th>Nationalité</th>
                                         <th>Téléphone</th>
                                         <th>Email</th>
-                                        <th>
-                                       
-                                        </th>
+                                        <th>Supprimer</th>
+                                        <th>Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($moniteurs as $moniteur)
                                     <tr>
                                         <td>{{ $moniteur->id }}</td>
+                                        <td>{{ $moniteur->matricule }}</td>
                                         <td>{{ $moniteur->nom_moniteur }}</td>
                                         <td>{{ $moniteur->prenom_moniteur }}</td>
                                         <td>{{ $moniteur->sexe }}</td>

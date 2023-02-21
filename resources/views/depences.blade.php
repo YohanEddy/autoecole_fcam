@@ -103,6 +103,8 @@
                                         <th>Montant</th>
                                         <th>Date</th>
                                         <th>Utilisateur</th>
+                                        <th>Supprimer</th>
+                                        <th>Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>

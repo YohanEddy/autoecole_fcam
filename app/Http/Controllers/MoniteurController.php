@@ -39,6 +39,7 @@ class MoniteurController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'matricule' => 'required|unique:moniteurs',
             'nom_moniteur' => 'required',
@@ -52,6 +53,7 @@ class MoniteurController extends Controller
             'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
          ]);
         $moniteur = new Moniteur;
+        $moniteur->matricule = $request->matricule;
         $moniteur->nom_moniteur = $request->nom_moniteur;
         $moniteur->prenom_moniteur = $request->prenom_moniteur;
         $moniteur->sexe = $request->sexe;

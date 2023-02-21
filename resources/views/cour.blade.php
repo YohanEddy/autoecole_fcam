@@ -78,6 +78,8 @@
     <div class="card">
         <div class="card-header">
             <h5>Les cours</h5>
+            <hr>
+            <a href=" {{ route('etat_cour') }}" class="btn btn-primary">Download List</a>
             <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
         </div>
         <div class="card-body table-border-style">
@@ -88,6 +90,8 @@
                             <th>N°</th>
                             <th>Libellé</th>
                             <th>Type de cour</th>
+                            <th>Supprimer</th>
+                            <th>Modifier</th>
                         </tr>
                     </thead>
                     <tbody>

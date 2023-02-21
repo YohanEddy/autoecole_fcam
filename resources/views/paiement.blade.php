@@ -89,6 +89,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Les paiements</h5>
+                        <hr>
+                        <div class="form-group">
+                            <p></p>
+                            <a href=" {{ route('etat_paiement') }} " class="btn  btn-primary">Download List</a>
+                        </div>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                     </div>
                     <div class="card-body table-border-style">
@@ -102,7 +107,8 @@
                                         <th>Montant Du</th>
                                         <th>Montant payé</th>
                                         <th>Reste à payer</th>
-                                        
+                                        <th>Supprimer</th>
+                                        <th>Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>
