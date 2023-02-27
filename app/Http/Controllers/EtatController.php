@@ -8,6 +8,7 @@ use App\Models\session;
 use App\Models\moniteur;
 use App\Models\paiement;
 use App\Models\apprenant;
+use App\Models\inscrire;
 use App\Models\participer;
 use Illuminate\Http\Request;
 
@@ -52,5 +53,10 @@ class EtatController extends Controller
     {
         $paiements = paiement::all();
         return view('etat_paiement', compact('paiements'));
+    }
+    public function inscrit()
+    {
+        $inscrires = inscrire::all();
+        return view('etat_inscrit', compact('inscrires'));
     }
 }

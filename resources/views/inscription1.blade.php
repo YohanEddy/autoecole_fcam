@@ -117,8 +117,8 @@
                                            
                                             <select class="form-control" id="exampleFormControlSelect1" name='type_formation'>
                                                 <option value="A">20 leçons de conduite</option>
-                                                <option value="B">15 leçons de conduite</option>
-                                                <option value="C">10 leçons de conduite</option>
+                                                <option value="B">10 leçons de conduite</option>
+                                                <option value="C">PACK pour toute demande de nombre important</option>
                                             </select>
                                             <div class="valid-feedback">
                                                 Looks good!

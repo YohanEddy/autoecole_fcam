@@ -44,6 +44,7 @@ Route::get('/etat_depense', [EtatController::class, 'depense'])->name('etat_depe
 Route::get('/etat_cour', [EtatController::class, 'cour'])->name('etat_cour')->middleware('auth');
 Route::get('/etat_pgrm_cour', [EtatController::class, 'pgrm_cour'])->name('etat_pgrm_cour')->middleware('auth');
 Route::get('/etat_paiement', [EtatController::class, 'paiement'])->name('etat_paiement')->middleware('auth');
+Route::get('/etat_inscrit', [EtatController::class, 'inscrit'])->name('etat_inscrit')->middleware('auth');
 
 
 Route::get('/moniteurs', [MoniteurController::class, 'index'])->name('moniteur')->middleware('auth');
