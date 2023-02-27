@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedInteger('sal_net')->default(0);
             $table->timestamps();
 
-            $table->string('matricule');
-            $table->foreign('matricule')->references('matricule')->on('moniteurs')->onDelete('cascade');
+            $table->unsignedBigInteger('moniteur_id');
+            $table->foreign('moniteur_id')->references('id')->on('moniteurs')->onDelete('cascade');
         });
     }
 

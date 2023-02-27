@@ -48,7 +48,8 @@
                                     <div class="form-group">
                                         <label for="validationCustom01"><strong>Matricule</strong></label>
                                         <input type="text" name="matricule" class="form-control" id="validationCustom01"
-                                            placeholder="Matricule" value="{{ old('matricule') }}">
+                                            placeholder="Matricule"
+                                            value="{{ isset($moniteur) ? $moniteur->matricule : '' }}">
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>

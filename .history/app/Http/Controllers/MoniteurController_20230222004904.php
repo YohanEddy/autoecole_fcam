@@ -41,43 +41,18 @@ class MoniteurController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'matricule'         => 'bail|required|unique:moniteurs',
-            'nom_moniteur'      => 'bail|required',
-            'prenom_moniteur'   => 'bail|required',
-            'sexe'              => 'bail|required',
-            'date_naiss'        => 'bail|required',
-            'lieunaiss'         => 'bail|required',
-            'domicile_moniteur' => 'bail|required',
-            'nationalite'       => 'bail|required',
-            'email'             => 'bail|required|email',
-            'telephone'         => 'bail|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
-        ];
-        $messages = [
-            'matricule.required'        => 'Le matricule est requis.',
-            'matricule.unique'          => 'Le numero de matricule existe déjà.',
-            'nom_moniteur.required'     => 'Le nom du moniteur est requis.',
-            'prenom_moniteur.required'  => 'Le prénom du moniteur est requis.',
-            'sexe.required'             => 'Le sexe est requis.',
-            'date_naiss.required'       => 'La date de naissance est requis.',
-            'lieunaiss.required'        => 'Le lieu de naissance est requis.',
-            'domicile_moniteur.required'    => 'L\'adresse du domicile est requis.',
-            'nationalite.required'          => 'La nationalité est requis.',
-            'email.required'                => 'L\'adresse email est requis.',
-            'email.email'                   => 'L\'adresse email est incorrect.',
-            'telephone.required'            => 'Le numero de téléphone est requis.',
-            'telephone.regex'               => 'Le numéro de téléphone doit être composer uniquement de chiffre.'
-        ];
-        dd($request);
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
+        $request->validate([
+            'matricule'         => 'required|unique:moniteurs',
+            'nom_moniteur'      => 'required',
+            'prenom_moniteur'   => 'required',
+            'sexe'              => 'required',
+            'date_naiss'        => 'required',
+            'lieunaiss'         => 'required',
+            'domicile_moniteur' => 'required',
+            'nationalite'       => 'required',
+            'email'             => 'required|email',
+            'telephone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
+        ]);
         $moniteur = new Moniteur;
         $moniteur->matricule = $request->matricule;
         $moniteur->nom_moniteur = $request->nom_moniteur;
@@ -132,20 +107,20 @@ class MoniteurController extends Controller
         $message = "";
         $message_type = "";
         $rules = [
-            'matricule'         => 'bail|required|exists:moniteurs',
-            'nom_moniteur'      => 'bail|required',
-            'prenom_moniteur'   => 'bail|required',
-            'sexe'              => 'bail|required',
-            'date_naiss'        => 'bail|required',
-            'lieunaiss'         => 'bail|required',
-            'domicile_moniteur' => 'bail|required',
-            'nationalite'       => 'bail|required',
-            'email'             => 'bail|required|email',
-            'telephone'         => 'bail|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
+            'matricule'         => 'required|unique:moniteurs',
+            'nom_moniteur'      => 'required',
+            'prenom_moniteur'   => 'required',
+            'sexe'              => 'required',
+            'date_naiss'        => 'required',
+            'lieunaiss'         => 'required',
+            'domicile_moniteur' => 'required',
+            'nationalite'       => 'required',
+            'email'             => 'required|email',
+            'telephone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
         ];
         $messages = [
             'matricule.required'        => 'Le matricule est requis.',
-            'matricule.exists'          => 'Le numero de matricule n\'existe pas.',
+            'matricule.unique'          => 'Le nupmero de matricule existe déjà.',
             'nom_moniteur.required'     => 'Le nom du moniteur est requis.',
             'prenom_moniteur.required'  => 'Le prénom du moniteur est requis.',
             'sexe.required'             => 'Le sexe est requis.',
@@ -165,26 +140,28 @@ class MoniteurController extends Controller
                 ->back()
                 ->withErrors($validator)
                 ->withInput();
-        }
-
-        $moniteur->nom_moniteur = $request->nom_moniteur;
-        $moniteur->prenom_moniteur = $request->prenom_moniteur;
-        $moniteur->sexe = $request->sexe;
-        $moniteur->date_naiss = $request->date_naiss;
-        $moniteur->lieunaiss = $request->lieunaiss;
-        $moniteur->domicile_moniteur = $request->domicile_moniteur;
-        $moniteur->telephone = $request->telephone;
-        $moniteur->nationalite = $request->nationalite;
-        $moniteur->email = $request->email;
-
-        $resultat = $moniteur->update();
-        if ($resultat == true) {
-            $message_type = 'success';
-            $message = "Operation effectuer avec succès.";
         } else {
-            // message d'echec
+            dd($message);
+
+            $moniteur->nom_moniteur = $request->nom_moniteur;
+            $moniteur->prenom_moniteur = $request->prenom_moniteur;
+            $moniteur->sexe = $request->sexe;
+            $moniteur->date_naiss = $request->date_naiss;
+            $moniteur->lieunaiss = $request->lieunaiss;
+            $moniteur->domicile_moniteur = $request->domicile_moniteur;
+            $moniteur->telephone = $request->telephone;
+            $moniteur->nationalite = $request->nationalite;
+            $moniteur->email = $request->email;
+
+            $resultat = $moniteur->update();
+            if ($resultat == true) {
+                $message_type = 'success';
+                $message = "Operation effectuer avec succès.";
+            } else {
+                // message d'echec
+            }
+            return redirect('moniteur')->with($message_type, $message);
         }
-        return redirect('/moniteurs')->with($message_type, $message);
     }
 
 

@@ -38,17 +38,14 @@
                                         @method('PUT')
                             @endif
                             @csrf
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <p class="text-center text-danger">{{ $error }}</p>
-                                @endforeach
-                            @endif
+                            <p class="text-center text-danger">Erreur</p>
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="validationCustom01"><strong>Matricule</strong></label>
                                         <input type="text" name="matricule" class="form-control" id="validationCustom01"
-                                            placeholder="Matricule" value="{{ old('matricule') }}">
+                                            placeholder="Matricule"
+                                            value="{{ isset($moniteur) ? $moniteur->matricule : '' }}">
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>

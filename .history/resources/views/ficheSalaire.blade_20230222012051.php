@@ -1,6 +1,3 @@
-@if ($errors->any())
-{{dd($errors)}}
-@endif
 @extends('../base/bases')
 @section('content')
     <!-- [ Main Content ] start -->

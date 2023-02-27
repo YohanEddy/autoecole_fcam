@@ -43,11 +43,13 @@ class SalaireController extends Controller
             'periode_fin.required'      => 'La date de fin de la période est requis',
             'matricule.required'        => 'Le matricule est requis',
             'matricule.exists'          => 'Le matricule n\'existe pas.',
+            'date_paiement.required'    => 'La date de paiement est requis',
             'salaire_brut.required'     => 'Le salaire brute est requis',
             'tot_retenues.required'     => 'Le total des retenus  est requis.',
         ];
 
         $rules = [
+            'date_paiement' => 'bail|required',
             'periode_debut' => 'bail|required',
             'periode_fin'   => 'bail|required',
             'salaire_brut'  => 'bail|required',
@@ -64,7 +66,7 @@ class SalaireController extends Controller
                 ->withInput();
         }
         fichesalaire::create([
-            'date_paiement' =>  now(),
+            'date_paiement' =>  $request->date_paiement,
             'periode_debut' =>  $request->periode_debut,
             'periode_fin'   =>  $request->periode_fin,
             'salaire_brut'  =>  $request->salaire_brut,
@@ -78,7 +80,7 @@ class SalaireController extends Controller
 
         // $fichesalaire->save();
 
-        return redirect()->back()->with('message', 'success');
+        return redirect()->back()->with('message', 'Opération effectuée avec succès.');
     }
 
     /**

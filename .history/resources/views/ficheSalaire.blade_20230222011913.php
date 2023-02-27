@@ -1,6 +1,3 @@
-@if ($errors->any())
-{{dd($errors)}}
-@endif
 @extends('../base/bases')
 @section('content')
     <!-- [ Main Content ] start -->
@@ -165,7 +162,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>TOTAL BRUT</strong></label>
-                                            <input name='salaire_brut' type="text" class="form-control"
+                                            <input name='tot_brut' type="text" class="form-control"
                                                 id="validationCustom02" placeholder=""required
                                                 value="{{ old('tot_brut') }}">
                                             <div class="valid-feedback">

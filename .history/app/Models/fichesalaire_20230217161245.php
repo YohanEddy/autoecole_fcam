@@ -10,15 +10,6 @@ class fichesalaire extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'date_paiement',
-        'periode_debut',
-        'date_paiement',
-        'peiode_debut',
-        'periode_fin',
-        'salaire_brut',
-        'sal_net',
-    ];
     public function moniteur()
     {
         return $this->belongsTo(moniteur::class);

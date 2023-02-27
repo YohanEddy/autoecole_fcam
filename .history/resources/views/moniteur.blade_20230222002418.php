@@ -1,5 +1,6 @@
 @extends('../base/bases')
 @section('content')
+    <h1>ujehnou</h1>
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-content">
@@ -38,17 +39,13 @@
                                         @method('PUT')
                             @endif
                             @csrf
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <p class="text-center text-danger">{{ $error }}</p>
-                                @endforeach
-                            @endif
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="validationCustom01"><strong>Matricule</strong></label>
                                         <input type="text" name="matricule" class="form-control" id="validationCustom01"
-                                            placeholder="Matricule" value="{{ old('matricule') }}">
+                                            placeholder="Matricule"
+                                            value="{{ isset($moniteur) ? $moniteur->matricule : '' }}">
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>

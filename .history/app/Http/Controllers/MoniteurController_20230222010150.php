@@ -68,7 +68,6 @@ class MoniteurController extends Controller
             'telephone.required'            => 'Le numero de téléphone est requis.',
             'telephone.regex'               => 'Le numéro de téléphone doit être composer uniquement de chiffre.'
         ];
-        dd($request);
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -77,6 +76,7 @@ class MoniteurController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        dd($request);
 
         $moniteur = new Moniteur;
         $moniteur->matricule = $request->matricule;
