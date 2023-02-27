@@ -97,14 +97,12 @@
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
                             
-                            <table class="table table-striped">
+                            <table class="table table-striped"">
                                 <thead>
                                     <tr>
                                         <th scope="col">N°</th>
                                         <th scope="col">TYPE DE PERMIS</th>
                                         <th scope="col">INTITULE</th>
-                                        <th>Supprimer</th>
-                                        <th>Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>

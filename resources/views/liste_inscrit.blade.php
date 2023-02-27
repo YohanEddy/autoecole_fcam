@@ -27,11 +27,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Liste des inscrits</h5>
-                        <hr>
-                        <div class="form-group">
-                            <p></p>
-                            <a href=" {{ route('etat_inscrit') }} " class="btn  btn-primary">Download List</a>
-                        </div>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                     </div>
                     <div class="card-body table-border-style">
@@ -42,12 +37,12 @@
                                         <th>N°</th>
                                         <th>Nom de famille</th>
                                         <th>Prénoms</th>
+                                        <th>Sexe</th>
+                                        <th>Add du domicile</th>
                                         <th>Téléphone</th>
-                                        <th>Période</th>
-                                        <th>Modalite de paiement</th>
+                                        <th>Email</th>
+                                        <th>Attentes</th>
                                         <th>Date d'inscription</th>
-                                        <th>Supprimer</th>
-                                        <th>modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,9 +52,11 @@
                                         <td>{{ $inscrire->apprenant->id }}</td>
                                         <td>{{ $inscrire->apprenant->nameapp }}</td>
                                         <td>{{ $inscrire->apprenant->prenomapp }}</td>
+                                        <td>{{ $inscrire->apprenant->sexe }}</td>
+                                        <td>{{ $inscrire->apprenant->domicile }}</td>
                                         <td>{{ $inscrire->apprenant->telephone }}</td>
-                                        <td>{{ $inscrire->periode }}</td>
-                                        <td>{{ $inscrire->modalite }}</td>
+                                        <td>{{ $inscrire->apprenant->email }}</td>
+                                        <td>{{ $inscrire->apprenant->attentes }}</td>
                                         <td>{{ $inscrire->apprenant->date_inscrip }}</td>
                                         <td>
                                             <form action="{{ route('apprenant.delete', $inscrire) }}" method="POST">
