@@ -1,6 +1,3 @@
-@if ($errors->any())
-{{dd($errors)}}
-@endif
 @extends('../base/bases')
 @section('content')
     <!-- [ Main Content ] start -->
@@ -44,7 +41,7 @@
                                     <div class="col-6 d-flex">
                                         <div class="d-block">
                                             <input type="date" name='periode_debut' class="form-control"
-                                                id="validationCustom03" value="{{ old('periode_debut') }}">
+                                                id="validationCustom03">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -52,7 +49,7 @@
                                         <div class="d-block p-4">AU</div>
                                         <div class="d-block">
                                             <input type="date" name='periode_fin' class="form-control"
-                                                id="validationCustom04" value="{{ old('periode_fin') }}">
+                                                id="validationCustom04">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -63,7 +60,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>Nom et Prénoms</strong></label>
                                             <input name='client' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="client" value="{{ old('client') }}">
+                                                id="validationCustom02" placeholder="client"required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -74,8 +71,7 @@
                                             <label for="validationCustom01"><strong>Catégorie
                                                     Professionelle</strong></label>
                                             <input name='categorie' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="categorie"
-                                                value="{{ old('categorie') }}">
+                                                id="validationCustom02" placeholder="categorie"required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -83,11 +79,9 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="validationCustom01"><strong>N° Matricule du
-                                                    Moniteur</strong></label>
+                                            <label for="validationCustom01"><strong>N° Matricule</strong></label>
                                             <input name='matricule' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="matricule"required
-                                                value="{{ old('matricule') }}">
+                                                id="validationCustom02" placeholder="matricule"required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -97,7 +91,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>Adresse</strong></label>
                                             <input name='adresse' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="adresse" value="{{ old('adresse') }}">
+                                                id="validationCustom02" placeholder="adresse"required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -107,7 +101,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>Emploi occupé</strong></label>
                                             <input name='emploi_occupe' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="" value="{{ old('emploi_occupe') }}">
+                                                id="validationCustom02" placeholder=""required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -165,9 +159,8 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>TOTAL BRUT</strong></label>
-                                            <input name='salaire_brut' type="text" class="form-control"
-                                                id="validationCustom02" placeholder=""required
-                                                value="{{ old('tot_brut') }}">
+                                            <input name='tot_brut' type="text" class="form-control"
+                                                id="validationCustom02" placeholder=""required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -270,8 +263,7 @@
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>TOTAL DES RETENUES</strong></label>
                                             <input name='tot_retenues' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="total des retenues"required
-                                                value="{{ old('tot_retenues') }}">
+                                                id="validationCustom02" placeholder="total des retenues"required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>

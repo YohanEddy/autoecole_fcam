@@ -1,5 +1,5 @@
 @if ($errors->any())
-{{dd($errors)}}
+dd($errors)
 @endif
 @extends('../base/bases')
 @section('content')

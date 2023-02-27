@@ -18,6 +18,7 @@ class fichesalaire extends Model
         'periode_fin',
         'salaire_brut',
         'sal_net',
+
     ];
     public function moniteur()
     {
