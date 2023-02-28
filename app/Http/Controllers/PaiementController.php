@@ -25,9 +25,9 @@ class PaiementController extends Controller
         if($tbl[1] == "A"){
             $montant_du = 135000;
         }elseif($tbl[1] == "B"){
-            $montant_du = 95000;
+            $montant_du = 12000;
         }elseif($tbl[1] == "C"){
-            $montant_du = 120000;
+            $montant_du = 95000;
         }
         $paiement = new paiement;
         $paiement->datepaiement = $request->datepaiement;
