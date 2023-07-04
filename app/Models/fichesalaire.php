@@ -18,9 +18,10 @@ class fichesalaire extends Model
         'periode_fin',
         'salaire_brut',
         'sal_net',
+        'matricule',
     ];
     public function moniteur()
     {
-        return $this->belongsTo(moniteur::class);
+        return $this->belongsTo(moniteur::class,"matricule","matricule");
     }
 }

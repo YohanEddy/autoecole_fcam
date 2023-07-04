@@ -6,6 +6,7 @@ use App\Models\inscrire;
 use App\Models\paiement;
 use App\Models\apprenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaiementController extends Controller
 {
@@ -14,26 +15,34 @@ class PaiementController extends Controller
     {
         $paiements = paiement::all();
         $inscrires = inscrire::all();
-        return view('paiement', compact('paiements','inscrires'));
+        $result = DB::select("SELECT paiements.apprenant_id, paiements.montant_du, sum(montant) AS totalPaye, apprenants.* 
+                            FROM paiements, apprenants 
+                            WHERE paiements.apprenant_id=apprenants.id 
+                            GROUP BY paiements.apprenant_id, paiements.montant_du");
+        // dd($result);
+        return view('paiement', compact('paiements','inscrires', 'result'));
     }
 
     public function store(Request $request)
     {
-        $val = $request->apprenant_id;
-        $tbl = explode("-",$val);
+        $inscription = inscrire::where('apprenant_id', $request->apprenant_id)->first();
+        $result = DB::select('SELECT paiements.apprenant_id, sum(montant) AS totalPaye, apprenants.* FROM paiements, apprenants WHERE paiements.apprenant_id=apprenants.id GROUP BY paiements.apprenant_id');
+        // dd($result);
         $montant_du = 0;
-        if($tbl[1] == "A"){
+        if($inscription->type_formation == "A"){
             $montant_du = 135000;
-        }elseif($tbl[1] == "B"){
+        }elseif($inscription->type_formation == "B"){
             $montant_du = 12000;
-        }elseif($tbl[1] == "C"){
+        }elseif($inscription->type_formation == "C"){
             $montant_du = 95000;
+        }elseif($inscription->type_formation == "D"){
+            $montant_du = 55000;
         }
         $paiement = new paiement;
         $paiement->datepaiement = $request->datepaiement;
         $paiement->montant = $request->montant;
         $paiement->montant_du = $montant_du;
-        $paiement->apprenant_id = $tbl[0];
+        $paiement->apprenant_id = $request->apprenant_id;
 
         $paiement->save();
 
@@ -44,6 +53,11 @@ class PaiementController extends Controller
     {
         $paiements = paiement::all();
         return view('paiement', compact("paiements", "paiement"));
+    }
+
+    public function show($id){
+        $paiements = paiement::where('apprenant_id', $id)->get();
+        return view('paiement-detail', compact('paiements'));
     }
 
     public function update(Request $request, paiement $paiement)

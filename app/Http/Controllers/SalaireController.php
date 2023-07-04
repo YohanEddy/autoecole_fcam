@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\moniteur;
 use App\Models\fichesalaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,10 @@ class SalaireController extends Controller
      */
     public function index()
     {
-        return view('fichesalaire');
+        $salaires = fichesalaire::with('moniteur')->get();
+        $moniteurs = moniteur::all();
+        // dd($salaires);
+        return view('fichesalaire', compact('moniteurs', 'salaires'));
     }
 
     /**
@@ -37,12 +41,12 @@ class SalaireController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $messages = [
             'periode_debut.required'    => 'La date de début de la période est requis',
             'periode_fin.required'      => 'La date de fin de la période est requis',
-            'matricule.required'        => 'Le matricule est requis',
-            'matricule.exists'          => 'Le matricule n\'existe pas.',
+            'matricule.required'        => 'Vous devez choisi le moniteur',
+            'matricule.exists'          => 'Le matricule du moniteur selectionner n\'existe pas.',
             'salaire_brut.required'     => 'Le salaire brute est requis',
             'tot_retenues.required'     => 'Le total des retenus  est requis.',
         ];
@@ -89,7 +93,7 @@ class SalaireController extends Controller
      */
     public function show(fichesalaire $fichesalaire)
     {
-        //
+
     }
 
     /**
@@ -125,6 +129,6 @@ class SalaireController extends Controller
     {
         $fichesalaire->delete();
 
-        return redirect()->route('fichesalaire');
+        return redirect()->route('fiche_paye.delete');
     }
 }

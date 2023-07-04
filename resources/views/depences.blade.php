@@ -81,7 +81,12 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif        
         <!-- [ Main Content ] end -->
         <div class="col-xl-12">
                 <div class="card">
@@ -103,6 +108,8 @@
                                         <th>Montant</th>
                                         <th>Date</th>
                                         <th>Utilisateur</th>
+                                        <th>SUPPRIMER</th>
+                                        <th>MODIFIER</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -114,11 +121,12 @@
                                         <td>{{ $depence->date_depence }}</td>
                                         <td>{{ $depence->user->name }}</td>
                                         <td>
-                                            <form action="{{ route('depence.delete', $depence) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            
+                                            <button id="" type="submit" class="btn btn-danger" 
+                                            data-role="delete" 
+                                            data-url="{{ route('depence.delete', $depence) }}">
+                                                Delete
+                                            </button>
                                         </td>
                                         <td>
                                             <form action="{{ route('depence.edit', $depence) }}" method="GET">

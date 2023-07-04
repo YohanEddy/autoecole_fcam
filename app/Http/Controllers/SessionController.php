@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\session;
 use Illuminate\Http\Request;
-
+use Alert;
 //Miss Guadeloupe
 
 class SessionController extends Controller
@@ -28,7 +28,7 @@ class SessionController extends Controller
 
         $session->save();
 
-        return redirect()->route('session');
+        return redirect()->route('session')->with('success','Enregistrement éffectuer avec succès');
     }
   
 
@@ -60,11 +60,22 @@ class SessionController extends Controller
         return redirect()->route('session')->with($message_type, $message);
     }
 
-    public function destroy(session $session)
+    public function destroy($id)
     {
+        $session = session::find($id);
         $session->apprenants()->delete();
-        $session->delete();
+        if($session->delete()){
+            return response()->json([
+                'status' => 200,
+                'message'=> "success",
+            ]);
+        }
         
-        return redirect()->route('session');
+        // return redirect()->route('session');
+        return response()->json([
+            'message'=> "error",
+        ]);
     }
+    
+
 }

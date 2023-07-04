@@ -26,7 +26,7 @@ class moniteur extends Model
 
     public function fichesalaire()
     {
-        return $this->hasMany(fichesalaire::class);
+        return $this->hasMany(fichesalaire::class, 'matricule');
     }
 
 

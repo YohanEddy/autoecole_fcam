@@ -1,5 +1,5 @@
 @if ($errors->any())
-{{dd($errors)}}
+
 @endif
 @extends('../base/bases')
 @section('content')
@@ -60,108 +60,28 @@
 
                                     </div>
                                     <div class="col-6">
+                                        
                                         <div class="form-group">
-                                            <label for="validationCustom01"><strong>Nom et Prénoms</strong></label>
-                                            <input name='client' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="client" value="{{ old('client') }}">
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
+                                            <label for="exampleFormControlSelect1"><strong>Nom et Prénom</strong></label>
+                                            <select name='matricule'class="form-control" id="validationCustom02">
+                                                @foreach($moniteurs as $moniteur)
+                                                <option value="{{$moniteur->matricule}}">{{ $moniteur->nom_moniteur." ".$moniteur->prenom_moniteur }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="validationCustom01"><strong>Catégorie
-                                                    Professionelle</strong></label>
-                                            <input name='categorie' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="categorie"
-                                                value="{{ old('categorie') }}">
+                                            <label for="validationCustom01"><strong>TOTAL DES RETENUES</strong></label>
+                                            <input name='tot_retenues' type="text" class="form-control"
+                                                id="validationCustom02" placeholder=""required
+                                                value="{{ old('tot_retenues') }}">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="validationCustom01"><strong>N° Matricule du
-                                                    Moniteur</strong></label>
-                                            <input name='matricule' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="matricule"required
-                                                value="{{ old('matricule') }}">
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="validationCustom01"><strong>Adresse</strong></label>
-                                            <input name='adresse' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="adresse" value="{{ old('adresse') }}">
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="validationCustom01"><strong>Emploi occupé</strong></label>
-                                            <input name='emploi_occupe' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="" value="{{ old('emploi_occupe') }}">
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col-6 d-flex">
-                                                <div class="d-block">
-                                                    <label><strong>Salaire de base</strong></label>
-                                                    <input type="text" name='SB' class="form-control" id="validationCustom03"
-                                                    placeholder="salaire de base"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="d-block p-4"> </div>
-                                                <div class="d-block">
-                                                    <label><strong>Heures Supplementaires</strong></label>
-                                                    <input type="text" name='heur_sup' class="form-control" id="validationCustom04"
-                                                    placeholder="heures supplementaires"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 d-flex">
-                                                <div class="d-block">
-                                                    <label><strong>Primes d'ancienneté</strong></label>
-                                                    <input type="text" name='prime_anc' class="form-control" id="validationCustom03"
-                                                    placeholder="Prime d'ancienneté"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="d-block p-4"> </div>
-                                                <div class="d-block">
-                                                    <label><strong>Primes de rendemment</strong></label>
-                                                    <input type="text" name='prime_rdm' class="form-control" id="validationCustom04"
-                                                    placeholder="Prime de rendement"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="validationCustom01"><strong>Gratification</strong></label>
-                                                    <input name='gratification' type="text" class="form-control"
-                                                        id="validationCustom02" placeholder="gratification"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+                                   
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="validationCustom01"><strong>TOTAL BRUT</strong></label>
@@ -173,157 +93,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <hr>
-                                <h5>Les Retenus</h5>
-                                <hr>
-                                <div class="row">
-                                    {{-- <div class="col-6 d-flex">
-                                                <div class="d-block">
-                                                    <label><strong>CNSS</strong></label>
-                                                    <input type="text" name='CNSS' class="form-control" id="validationCustom03"
-                                                    placeholder="CNSS"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="d-block p-4"> </div>
-                                                <div class="d-block">
-                                                    <label><strong>INS</strong></label>
-                                                    <input type="text" name='INS' class="form-control" id="validationCustom04"
-                                                    placeholder="INS"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                    {{-- <div class="col-6 d-flex">
-                                                <div class="d-block">
-                                                    <label><strong>IRPP</strong></label>
-                                                    <input type="text" name='IRPP' class="form-control" id="validationCustom03"
-                                                    placeholder="IRPP"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="d-block p-4"> </div>
-                                                <div class="d-block">
-                                                    <label><strong>TCS</strong></label>
-                                                    <input type="text" name='TCS' class="form-control" id="validationCustom04"
-                                                    placeholder="TCS"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                    {{-- <div class="col-6 d-flex">
-                                                <div class="d-block">
-                                                    <label><strong>Facture</strong></label>
-                                                    <input type="text" name='facture' class="form-control" id="validationCustom03"
-                                                    placeholder="facture"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="d-block p-4"> </div>
-                                                <div class="d-block">
-                                                    <label><strong>Soins</strong></label>
-                                                    <input type="text" name='soins' class="form-control" id="validationCustom04"
-                                                    placeholder="soins"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 d-flex">
-                                                <div class="d-block">
-                                                    <label><strong>Avance</strong></label>
-                                                    <input type="text" name='avance' class="form-control" id="validationCustom03"
-                                                    placeholder="avance"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="d-block p-4"> </div>
-                                                <div class="d-block">
-                                                    <label><strong>Crédit</strong></label>
-                                                    <input type="text" name='credit' class="form-control" id="validationCustom04"
-                                                    placeholder="crédit"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="validationCustom01"><strong>Acompte</strong></label>
-                                                    <input name='acompte' type="text" class="form-control"
-                                                        id="validationCustom02" placeholder="acompte"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="validationCustom01"><strong>TOTAL DES RETENUES</strong></label>
-                                            <input name='tot_retenues' type="text" class="form-control"
-                                                id="validationCustom02" placeholder="total des retenues"required
-                                                value="{{ old('tot_retenues') }}">
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <h5>Net à payer</h5>
-                                <hr>
-                                {{-- <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="validationCustom01"><strong>1er Net </strong></label>
-                                                    <input name='first_net' type="text" class="form-control"
-                                                        id="validationCustom02" placeholder=""required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="validationCustom01"><strong>Transport</strong></label>
-                                                    <input name='transport' type="text" class="form-control"
-                                                        id="validationCustom02" placeholder=""required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="validationCustom01"><strong>NET A PAYER</strong></label>
-                                                    <input name='net' type="text" class="form-control"
-                                                        id="validationCustom02" placeholder=""required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect3"><strong>Date de Paiement</strong></label>
-                                                    <input name="date_paiement" type="datetime-local" class="form-control" id="validationCustom03"
-                                                        placeholder="Date de paiement"required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-                                <hr>
+                            
                                 @if (!isset($fichesalaire))
                                     <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
                                 @else
@@ -335,7 +105,68 @@
                 </div>
             </div>
             <!-- [ Main Content ] end -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Liste des payes</h5>
+                        <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <p></p>
+                            <a href=" {{ route('etat_salaire') }} " class="btn  btn-primary">Download List</a>
+                        </div>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>matricule</th>
+                                        <th>Nom et prénom</th>
+                                        <th>Période</th>
+                                        <th>total brut</th>
+                                        <th>salaire net</th>
+                                        <th>date de paiement</th>
+                                        <th>supprimer</th>
+                                        <th>modifier</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($salaires as $salaire)
+                                        <tr>
+                                            <td>{{ $salaire->id }}</td>
+                                            <td>{{ $salaire->matricule }}</td>
+                                            <td>{{ $salaire->moniteur->nom_moniteur. " " .$salaire->moniteur->prenom_moniteur}} </td>
+                                            <td>{{ $salaire->periode_debut. " Au " .$salaire->periode_fin}}
+                                            <td>{{ $salaire->salaire_brut }}</td>
+                                            <td>{{ $salaire->sal_net }}</td>
+                                            <td>{{ $salaire->date_paiement }}</td>
+                                            <td>
+                                                <form action="{{ route('fiche_paye.delete', $salaire) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('fiche_paye.edit', $salaire) }}"
+                                                    method="GET">
+                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
 
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 @endsection

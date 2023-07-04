@@ -27,5 +27,10 @@ class PostController extends Controller
         return view('sapmle_page');
     }
 
+    public function layout()
+    {
+        return view('layout-horizontal');
+    }
+
 
 }

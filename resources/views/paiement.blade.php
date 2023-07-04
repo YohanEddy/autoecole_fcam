@@ -42,7 +42,7 @@
                                             <label for="exampleFormControlSelect1"><strong>Client</strong></label>
                                             <select name="apprenant_id" class="form-control" id="exampleFormControlSelect1">
                                                 @foreach($inscrires as $inscrire)
-                                                    <option value="{{$inscrire->apprenant->id."-".$inscrire->type_formation}}">
+                                                    <option value="{{$inscrire->apprenant->id}}">
                                                         {{ $inscrire->apprenant->nameapp." ".$inscrire->apprenant->prenomapp }}
                                                     </option>
                                                 @endforeach
@@ -70,7 +70,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect3"><strong>Date de Paiement</strong></label>
-                                            <input name="datepaiement" type="datetime-local" class="form-control" id="validationCustom03"
+                                            <input name="datepaiement" type="date" class="form-control text-uppercase" id="validationCustom03"
                                                 placeholder="Date de paiement"required
                                                 value="{{ isset($paiement) ? $paiement->datepaiement : "" }}">
                                             <div class="valid-feedback">
@@ -89,6 +89,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Les paiements</h5>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <p></p>
+                                <a href=" {{ route('etat_paiement') }} " class="btn  btn-primary">Download List</a>
+                            </div>
+                        </div>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                     </div>
                     <div class="card-body table-border-style">
@@ -98,15 +104,29 @@
                                     <tr>
                                         <th>N°</th>
                                         <th>Client</th>
-                                        <th>Date de paiement</th>
+                                        {{-- <th>Date de paiement</th> --}}
                                         <th>Montant Du</th>
                                         <th>Montant payé</th>
                                         <th>Reste à payer</th>
-                                        
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($paiements as $paiement)
+                                    @foreach ($result as $row)
+                                        <tr>
+                                            <td>{{ $row->id }}</td>
+                                            <td>{{ $row->nameapp." ".$row->prenomapp }}</td>
+                                            <td>{{ $row->montant_du }}</td>
+                                            <td>{{ $row->totalPaye }}</td>
+                                            <td class="font-weight-bold {{($row->montant_du-$row->totalPaye)==0 ? "text-success" : "text-danger"}}">
+                                                {{ ($row->montant_du-$row->totalPaye)==0 ? "Soldé" : ($row->montant_du-$row->totalPaye) }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('paiement.show', $row->id) }}" class="btn btn-success px-3 py-2">Détail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    {{-- @foreach($paiements as $paiement)
 
                                     <tr>
                                         <td>{{ $paiement->id }}</td>
@@ -117,21 +137,19 @@
                                         <td>
                                             
                                         </td>
-                                        <td>
-                                            <form action="{{ route('paiement.delete', $paiement) }}" method="POST">
+                                        <td class="d-flex">
+                                            <form action="{{ route('paiement.delete', $paiement) }}" method="POST" class="px-2">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('paiement.edit', $paiement) }}" method="GET">
+                                            <form action="{{ route('paiement.edit', $paiement) }}" method="GET" class="px-2">
                                                 <button type="submit" class="btn btn-success">Update</button>
                                             </form>
                                         </td>
                                     </tr>
 
-                                    @endforeach
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>

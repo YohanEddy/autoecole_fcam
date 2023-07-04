@@ -10,6 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
     <link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
 
@@ -17,6 +18,10 @@
 	<link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}"> 
 	<link rel="stylesheet" href="{{ URL::asset('datatable/DataTables/datatables.min.css') }}">   
 	<script src="{{ URL::asset('datatable/DataTables/jQuery-3.6.0/jquery-3.6.0.min.js') }}"></script>
+	{{-- <link rel="stylesheet" href="{{ asset('path/to/sweetalert.css') }}"> --}}
+	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
+    @vite('../../resources/js/app.js')
+
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -33,7 +38,7 @@
 				
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius" src="../images/user/fcam.jpg" alt="User-Profile-Image">
+						<img class="img-radius" src="{{ asset('images/user/fcam.jpg') }}" alt="User-Profile-Image">
 						<div class="user-details">
 							<div id="more-details">{{ Auth::user()->name }}<i class="fa fa-caret-down"></i></div>
 						</div>
@@ -52,6 +57,13 @@
 					</li>
 					<li class="nav-item">
 					    <a href="{{ route('home') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Menu</span></a>
+					</li>
+					<li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
+						<ul class="pcoded-submenu">
+							<li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
+							<li><a href=" {{ route('layout_horizontal') }}" target="_blank">Horizontal</a></li>
+						</ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Formulaires &amp; Tableaux</label>
@@ -105,8 +117,8 @@
 					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 					<a href="#!" class="b-brand">
 						<!-- ========   change your logo hear   ============ -->
-						<img src="../assets/images/logo.png" alt="" class="logo">
-						<img src="../assets/images/logo-icon.png" alt="" class="logo-thumb">
+						<img src="{{ asset('images/logo.png') }}" alt="" class="logo">
+						<img src="{{ asset('images/logo-icon.png') }}" alt="" class="logo-thumb">
 					</a>
 					<a href="#!" class="mob-toggler">
 						<i class="feather icon-more-vertical"></i>
@@ -132,7 +144,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-right profile-notification">
 									<div class="pro-head">
-										<img src="../assets/images/user/avatar-1.jpg" class="img-radius" alt="">
+										<img src="{{ asset('images/user/avatar-1.jpg') }}" class="img-radius" alt="">
 										<span>{{ Auth::user()->name }}</span>
 										<a href="{{ route('logout') }}" class="dud-logout" title="Logout">
 											<i class="feather icon-log-out"></i>
@@ -152,20 +164,22 @@
 	</header>
 
 	@yield('content')
-    <script src="../assets/js/vendor-all.min.js"></script>
-    <script src="../assets/js/plugins/bootstrap.min.js"></script>
-    <script src="../assets/js/ripple.js"></script>
-    <script src="../assets/js/pcoded.min.js"></script>
-	<script src="{{ URL::asset('datatable/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor-all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ripple.js') }}"></script>
+    <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
+	{{-- <script src="../assets/js/swetalert.js"></script> --}}
+	<script src="{{ asset('datatable/DataTables/datatables.min.js') }}"></script>
 
-
+	@vite("../../resources/js/test.js")
 
 <!-- Apex Chart -->
-<script src="../js/plugins/apexcharts.min.js"></script>
+{{-- <script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script> --}}
 
 
 <!-- custom-chart js -->
-<script src="../js/pages/dashboard-main.js"></script>
+{{-- <script src="{{ asset('assets/js/pages/dashboard-main.js') }}"></script> --}}
+{{--<script src="{{ asset('js/swetalert.js') }}"></script>--}}
 </body>
 
 </html>

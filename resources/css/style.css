@@ -24003,7 +24003,7 @@ div.dtk-focus-alt table.dataTable tbody th.focus {
     overflow: hidden;
     min-width: 100%;
     min-height: 100vh;
-    background: #4680ff;
+    background:#BF2131;
 }
 
 @media (min-width: 1200px) {
@@ -24173,13 +24173,13 @@ div.dtk-focus-alt table.dataTable tbody th.focus {
 
 .auth-wrapper .card-body .carousel-indicators li {
     width: 50px;
-    background-color: rgba(70, 128, 255, 0.4);
+    background-color: rgba(255, 99, 71, 0.5);
     border-radius: 5px;
     height: 4px;
 }
 
 .auth-wrapper .card-body .carousel-indicators li.active {
-    background-color: #4680ff;
+    background-color: #5e1f1f;
 }
 
 .auth-wrapper .img-logo-overlay {

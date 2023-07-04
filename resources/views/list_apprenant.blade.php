@@ -53,6 +53,8 @@
                                         <th>Email</th>
                                         <th>Attentes</th>
                                         <th>Date d'inscription</th>
+                                        <th>supprimer</th>
+                                        <th>modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>

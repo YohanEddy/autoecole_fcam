@@ -27,6 +27,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Liste des inscrits</h5>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <p></p>
+                                <a href=" {{ route('etat_inscrit') }} " class="btn  btn-primary">Download List</a>
+                            </div>
+                        </div>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                     </div>
                     <div class="card-body table-border-style">
@@ -43,6 +49,8 @@
                                         <th>Email</th>
                                         <th>Attentes</th>
                                         <th>Date d'inscription</th>
+                                        <th>supprimer</th>
+                                        <th>modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>

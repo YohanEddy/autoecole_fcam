@@ -119,6 +119,7 @@
                                                 <option value="A">20 leçons de conduite</option>
                                                 <option value="B">15 leçons de conduite</option>
                                                 <option value="C">10 leçons de conduite</option>
+                                                <option value="D">Juste le Code</option>
                                             </select>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -193,7 +194,7 @@
                                                     de formation ?</strong></label>
                                             <input type="text" name='cnxance_centre' class="form-control" id="attente"
                                             value="{{ isset($inscrire) ? $inscrire->apprenant->cnxance_centre : "" }}"
-                                                placeholder=""required>
+                                                placeholder="Comment avez vous eu connaissance de notre centre ?" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>

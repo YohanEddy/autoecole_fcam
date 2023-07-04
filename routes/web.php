@@ -38,10 +38,14 @@ Route::get('/list_insc', [ListInscriController::class, 'liste_inscrit'])->name('
 Route::get('/list_app', [ListApprenantController::class, 'liste_apprenant'])->name('list_app')->middleware('auth');
 
 Route::get('/etat_moniteur', [EtatController::class, 'moniteur'])->name('etat_moniteur')->middleware('auth');
+Route::get('/etat_salaire', [EtatController::class, 'salaire'])->name('etat_salaire')->middleware('auth');
 Route::get('/etat_session', [EtatController::class, 'session'])->name('etat_session')->middleware('auth');
 Route::get('/etat_apprenant', [EtatController::class, 'apprenant'])->name('etat_apprenant')->middleware('auth');
 Route::get('/etat_depense', [EtatController::class, 'depense'])->name('etat_depense')->middleware('auth');
-
+Route::get('/etat_cour', [EtatController::class, 'cour'])->name('etat_cour')->middleware('auth');
+Route::get('/etat_paiement', [EtatController::class, 'paiement'])->name('etat_paiement')->middleware('auth');
+Route::get('/etat_pgrm_cour', [EtatController::class, 'participer'])->name('etat_pgrm_cour')->middleware('auth');
+Route::get('/etat_inscrit', [EtatController::class, 'inscrit'])->name('etat_inscrit')->middleware('auth');
 
 Route::get('/moniteurs', [MoniteurController::class, 'index'])->name('moniteur')->middleware('auth');
 Route::post('/moniteur',[MoniteurController::class, 'store'])->name('moniteur.stores');
@@ -51,6 +55,7 @@ Route::get('/moniteur/{moniteur}/edit',[MoniteurController::class, 'edit'])->nam
 
 Route::get('/paiements', [PaiementController::class, 'paiement'])->name('paiement')->middleware('auth');
 Route::post('/paiement',[PaiementController::class, 'store'])->name('paiement.store');
+Route::get("/paiement/{id}", [PaiementController::class, 'show'])->name('paiement.show');
 Route::get('/paiement/{paiement}/edit',[PaiementController::class, 'edit'])->name('paiement.edit');
 Route::put('/paiement/{paiement}', [PaiementController::class, 'update'])->name('paiement.update');
 Route::delete('/paiement/{paiement}',[PaiementController::class, 'destroy'])->name('paiement.delete');
@@ -59,12 +64,12 @@ Route::get('/depences', [DepenceController::class, 'depences'])->name('depence')
 Route::post('/depence',[DepenceController::class, 'store'])->name('depence.store');
 Route::get('/depence/{depence}/edit',[DepenceController::class, 'edit'])->name('depence.edit');
 Route::put('/depence/{depence}',[DepenceController::class, 'update'])->name('depence.update');
-Route::delete('/depence/{depence}',[DepenceController::class, 'destroy'])->name('depence.delete');
+Route::post('/depence/{id}',[DepenceController::class, 'destroy'])->name('depence.delete');
 
 Route::get('/sessions', [SessionController::class, 'session'])->name('session')->middleware('auth');
 Route::post('/session', [SessionController::class, 'store'])->name('session.store');
 Route::get('/session/{session}/edit',[SessionController::class, 'edit'])->name('session.edit');
-Route::delete('/session/{session}',[SessionController::class, 'destroy'])->name('session.delete');
+Route::post('/session/{id}',[SessionController::class, 'destroy'])->name('session.delete');
 Route::put('/session/{session}',[SessionController::class, 'update'])->name('session.update');
 
 Route::get('/participers', [ParticiperController::class, 'participer'])->name('participer')->middleware('auth');
@@ -81,6 +86,7 @@ Route::get('/fichesalaire/{fichesalaire}/edit',[SalaireController::class, 'edit'
 
 
 Route::get('/sampleP', [PostController::class, 'sample_page'])->name('sample')->middleware('auth');
+Route::get('/layout_hoz', [PostController::class, 'layout'])->name('layout_horizontal')->middleware('auth');
 
 Route::get('/cours', [CourController::class, 'cour'])->name('cour')->middleware('auth');
 Route::post('/cour',[CourController::class, 'store'])->name('cour.store');

@@ -38,7 +38,7 @@ class DepenceController extends Controller
 
         $depence->save();
 
-        return redirect()->route('depence');
+        return redirect()->route('depence')->with('success','Enregistrement éffectuer avec succès');
     }
 
     public function edit(depence $depence)
@@ -73,11 +73,21 @@ class DepenceController extends Controller
         return redirect()->route('depence')->with($message_type, $message);
     }
 
-    public function destroy(depence $depence)
+    public function destroy($id)
     {
-        //$depence->users()->delete();
-        $depence->delete();
+
+        $depence = depence::find($id);
+        $depence->users()->delete();
+        if($depence->delete()){
+            return response()->json([
+                'status' => 200,
+                'message'=> "success",
+            ]);
+        }
         
-        return redirect()->route('depence');
+        // return redirect()->route('session');
+        return response()->json([
+            'message'=> "error",
+        ]);
     }
 }

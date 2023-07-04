@@ -23,6 +23,7 @@
             <!-- [ breadcrumb ] end -->
             <!-- [ Main Content ] start -->
             <div class="row">
+                
                 <!-- [ form-element ] start -->
                 <div class="col-sm-12">
                     <div class="card">
@@ -48,6 +49,7 @@
                                                         <option value="D" {{ (isset($session) && ($session->type_permis =="D")) ? 'selected' : '' }}>D</option>
                                                         <option value="E" {{ (isset($session) && ($session->type_permis =="E")) ? 'selected' : '' }}>E</option>
                                                         <option value="F" {{ (isset($session) && ($session->type_permis =="F")) ? 'selected' : '' }}>F</option>
+                                                        <option value="G" {{ (isset($session) && ($session->type_permis =="G")) ? 'selected' : '' }}>Sans passer l'examen</option>
                                                     </select>    
                                                 </div>
                                             </div>
@@ -82,6 +84,13 @@
                     </div>
                 </div>
             </div>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+
             <!-- [ Main Content ] end -->
             <div class="col-xl-12">
                 <div class="card">
@@ -94,6 +103,7 @@
                         <p></p>
                         <a href=" {{ route('etat_session') }} " class="btn  btn-primary">Download List</a>
                     </div>
+                    
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
                             
@@ -103,6 +113,8 @@
                                         <th scope="col">N°</th>
                                         <th scope="col">TYPE DE PERMIS</th>
                                         <th scope="col">INTITULE</th>
+                                        <th scope="col">supprimer</th>
+                                        <th scope="col">modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,11 +124,15 @@
                                         <td>{{ $session->type_permis }}</td>
                                         <td>{{ $session->intitule }}</td>
                                         <td>
-                                            <form action="{{ route('session.delete', $session) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            {{-- <form id="session-delete-form"  > --}}
+                                                {{-- @csrf action="{{ route('session.delete', $session) }}" method="POST" --}}
+                                                {{-- @method('delete') --}}
+                                                <button id="" type="submit" class="btn btn-danger" 
+                                                data-role="delete" 
+                                                data-url="{{ route('session.delete', $session) }}">
+                                                    Delete
+                                                </button>
+                                            {{-- </form> --}}
                                         </td>
                                         <td>
                                             <form action="{{ route('session.edit', $session) }}" method="GET">
@@ -133,4 +149,11 @@
             </div>
         </div>
     </section>
+    <script>
+        // const btn = document.getElementById('btn-sw');
+
+        // btn.addEventListener('click', () => {
+        //     swal("Test");
+        // });
+    </script>
 @endsection

@@ -91,15 +91,7 @@
                                             Looks good!
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="validationCustom04"><strong>Lieu de Naissance</strong></label>
-                                        <input type="text" name="lieunaiss" class="form-control"
-                                            value="{{ isset($moniteur) ? $moniteur->lieunaiss : '' }}"
-                                            id="validationCustom04" placeholder="Lieu de naissance"required>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
@@ -137,6 +129,15 @@
                                             id="exampleInputEmail1" aria-describedby="emailHelp"
                                             placeholder="Entrez l'email">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="validationCustom04"><strong>Lieu de Naissance</strong></label>
+                                        <input type="text" name="lieunaiss" class="form-control"
+                                            value="{{ isset($moniteur) ? $moniteur->lieunaiss : '' }}"
+                                            id="validationCustom04" placeholder="Lieu de naissance"required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
                                 </div>
                                 <p></p>
                                 @if (!isset($moniteur))
@@ -149,6 +150,11 @@
                         </div>
                     </div>
                 </div>
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
                 <!-- [ Main Content ] end -->
                 <div class="col-xl-12">
                     <div class="card">
@@ -156,7 +162,6 @@
                             <h5>Liste des moniteurs</h5>
                             <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                         </div>
-                        <hr>
                         <div class="col-6">
                             <div class="form-group">
                                 <p></p>
@@ -178,9 +183,8 @@
                                             <th>Nationalité</th>
                                             <th>Téléphone</th>
                                             <th>Email</th>
-                                            <th>
-
-                                            </th>
+                                            <th>supprimer</th>
+                                            <th>modifier</th>
                                         </tr>
                                     </thead>
                                     <tbody>

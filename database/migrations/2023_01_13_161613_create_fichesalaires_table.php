@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('fichesalaires', function (Blueprint $table) {
             $table->id();
             $table->date('date_paiement');
-            $table->date('peiode_debut');
+            $table->date('periode_debut');
             $table->date('periode_fin');
             $table->double('salaire_brut')->default(0);
             $table->unsignedInteger('sal_net')->default(0);
