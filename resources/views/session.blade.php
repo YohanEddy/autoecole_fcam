@@ -68,10 +68,7 @@
 
 
                                             <div>
-                                                <p>
-
-
-                                                </p>
+                                                
                                                 @if(!isset($session))
                                                 <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
                                                 @else
@@ -85,10 +82,11 @@
                 </div>
             </div>
             @if(session('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-info" role="alert">
                     {{ session('success') }}
                 </div>
             @endif
+
             
 
             <!-- [ Main Content ] end -->

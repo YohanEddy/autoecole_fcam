@@ -34,7 +34,7 @@ class ParticiperController extends Controller
 
         $participer->save();
 
-        return redirect()->route('participer');
+        return redirect()->route('participer')->with('success','Enregistrement éffectuer avec succès');
     }
 
     public function edit(participer $participer)

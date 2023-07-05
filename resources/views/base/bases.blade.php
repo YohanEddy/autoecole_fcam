@@ -38,7 +38,7 @@
 				
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius" src="{{ asset('images/user/fcam.jpg') }}" alt="User-Profile-Image">
+						<!--<img class="img-radius" src="{{ asset('images/user/fcam.jpg') }}" alt="User-Profile-Image"> -->
 						<div class="user-details">
 							<div id="more-details">{{ Auth::user()->name }}<i class="fa fa-caret-down"></i></div>
 						</div>
@@ -46,7 +46,7 @@
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
 							
-							<li class="list-group-item"><a href=" {{ route('logout') }}"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+							<li class="list-group-item"><a href=" {{ route('logout') }}"><i class="feather icon-log-out m-r-5"></i>Se Deconnecter</a></li>
 						</ul>
 					</div>
 				</div>
@@ -58,21 +58,18 @@
 					<li class="nav-item">
 					    <a href="{{ route('home') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Menu</span></a>
 					</li>
-					<li class="nav-item pcoded-hasmenu">
-						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
-						<ul class="pcoded-submenu">
-							<li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-							<li><a href=" {{ route('layout_horizontal') }}" target="_blank">Horizontal</a></li>
-						</ul>
-					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Formulaires &amp; Tableaux</label>
 					</li>
 					<li class="nav-item">
 					    <a href="{{ route('inscription') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Inscription</span></a>
 					</li>
-                    <li class="nav-item">
-					    <a href="{{ route('moniteur') }}" class="nav-link "><span class="pcoded-micon"><i class="fa fa-user"></i></span><span class="pcoded-mtext">Moniteurs</span></a>
+                    <li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hand-holding-usd"></i></span><span class="pcoded-mtext">Moniteur</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="{{ route('moniteur') }}">Nouveau Moniteur</a></li>
+					        <li><a href="{{ route('list_monit') }}">Liste des Moniteurs</a></li>
+					    </ul>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hand-holding-usd"></i></span><span class="pcoded-mtext">Caisse</span></a>
@@ -146,7 +143,7 @@
 									<div class="pro-head">
 										<img src="{{ asset('images/user/avatar-1.jpg') }}" class="img-radius" alt="">
 										<span>{{ Auth::user()->name }}</span>
-										<a href="{{ route('logout') }}" class="dud-logout" title="Logout">
+										<a href="{{ route('logout') }}" class="dud-logout" title="Déconnection">
 											<i class="feather icon-log-out"></i>
 										</a>
 									</div>
@@ -174,11 +171,11 @@
 	@vite("../../resources/js/test.js")
 
 <!-- Apex Chart -->
-{{-- <script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script> --}}
+{<script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script>
 
 
 <!-- custom-chart js -->
-{{-- <script src="{{ asset('assets/js/pages/dashboard-main.js') }}"></script> --}}
+<script src="{{ asset('assets/js/pages/dashboard-main.js') }}"></script>
 {{--<script src="{{ asset('js/swetalert.js') }}"></script>--}}
 </body>
 

@@ -1,4 +1,4 @@
-@if(layouts=='horizontal' || layouts == 'combine'){
+@if($layouts=='horizontal' || $layouts == 'combine'){
     <script src="{{asset('assets/js/horizontal-menu.js')}}"></script>
     @if(sublayouts!='layout9'){
     <script>
@@ -30,7 +30,7 @@
             });
         });
     </script>
-    }
+    }@endif
     <script>
         $("#pcoded").pcodedmenu({
             themelayout: 'horizontal',
@@ -38,5 +38,5 @@
             SubMenuTrigger: 'hover',
         });
     </script>
-    }
+    }@endif
     

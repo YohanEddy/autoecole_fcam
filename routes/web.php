@@ -13,6 +13,7 @@ use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\ListInscriController;
 use App\Http\Controllers\ParticiperController;
 use App\Http\Controllers\ListApprenantController;
+use App\Http\Controllers\ListMoniteur;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::put('/apprenant/{inscrire}',[ApprenantController::class, 'update'])->name
 
 Route::get('/list_insc', [ListInscriController::class, 'liste_inscrit'])->name('list_ins')->middleware('auth');
 Route::get('/list_app', [ListApprenantController::class, 'liste_apprenant'])->name('list_app')->middleware('auth');
+Route::get('list_moniteur', [ListMoniteur::class, 'index'])->name('list_monit')->middleware('auth');
 
 Route::get('/etat_moniteur', [EtatController::class, 'moniteur'])->name('etat_moniteur')->middleware('auth');
 Route::get('/etat_salaire', [EtatController::class, 'salaire'])->name('etat_salaire')->middleware('auth');
@@ -86,8 +88,6 @@ Route::get('/fichesalaire/{fichesalaire}/edit',[SalaireController::class, 'edit'
 
 
 Route::get('/sampleP', [PostController::class, 'sample_page'])->name('sample')->middleware('auth');
-Route::get('/layout_hoz', [PostController::class, 'layout'])->name('layout_horizontal')->middleware('auth');
-
 Route::get('/cours', [CourController::class, 'cour'])->name('cour')->middleware('auth');
 Route::post('/cour',[CourController::class, 'store'])->name('cour.store');
 Route::get('/cour/{cour}/edit',[ CourController::class, 'edit'])->name('cour.edit');

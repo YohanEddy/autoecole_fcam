@@ -83,10 +83,10 @@
             </div>
         </div>
         @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif        
+                <div class="alert alert-info" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif        
         <!-- [ Main Content ] end -->
         <div class="col-xl-12">
                 <div class="card">

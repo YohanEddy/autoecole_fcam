@@ -46,7 +46,7 @@ class PaiementController extends Controller
 
         $paiement->save();
 
-        return redirect()->route('paiement');
+        return redirect()->route('paiement')->with('success','Enregistrement éffectuer avec succès');
     }
 
     public function edit(paiement $paiement)

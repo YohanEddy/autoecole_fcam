@@ -36,7 +36,7 @@
                 <h5>Liste des Cours Programmés</h5>
                 <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
             </div>
-            <hr>
+           
             <div class="card-body table-border-style">
                 <div class="table-responsive">
                     <table id="pgrm_cour" class="table datatable">

@@ -82,7 +82,7 @@ class SalaireController extends Controller
 
         // $fichesalaire->save();
 
-        return redirect()->back()->with('message', 'success');
+        return redirect()->back()->with('success','Enregistrement éffectuer avec succès');
     }
 
     /**

@@ -18,6 +18,7 @@ class MoniteurController extends Controller
      */
     public function index()
     {
+        
         $moniteurs = moniteur::all();
         // dd($moniteurs);
         return view('moniteur', compact('moniteurs'));

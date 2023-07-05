@@ -28,7 +28,7 @@ class CourController extends Controller
         $cour->save();
         
 
-        return redirect()->route('cour');
+        return redirect()->route('cour')->with('success', 'Enregistrement éffectué avec succes');
     }
 
     public function edit(cour $cour)
