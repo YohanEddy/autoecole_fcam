@@ -7,6 +7,7 @@ use App\Models\session;
 use App\Models\apprenant;
 use App\Models\participer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ParticiperController extends Controller
 {
@@ -23,6 +24,26 @@ class ParticiperController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'date_cour'     => 'bail|required',
+            'session_id'    => 'bail|required',
+            'apprenant_id'  => 'bail|required',
+            'cour_id'       => 'bail|required',
+        ];
+
+        $messages = [
+            'date_cour'     => 'La date est requise',
+            'session_id'    => 'La session est requise',
+            'apprenant_id'  => 'l\'apprenant est requis',
+            'cour_id'       => 'Le cour est requis',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
 
         $participer = new participer;
@@ -50,6 +71,26 @@ class ParticiperController extends Controller
     {
         $message = "";
         $message_type = "";
+        $rules = [
+            'date_cour'     => 'bail|required',
+            'session_id'    => 'bail|required',
+            'apprenant_id'  => 'bail|required',
+            'cour_id'       => 'bail|required',
+        ];
+
+        $messages = [
+            'date_cour'     => 'La date est requise',
+            'session_id'    => 'La session est requise',
+            'apprenant_id'  => 'l\'apprenant est requis',
+            'cour_id'       => 'Le cour est requis',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $participer->date_cour = $request->date_cour;
         $participer->session_id = $request->session_id;

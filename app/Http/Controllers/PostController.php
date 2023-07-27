@@ -19,6 +19,7 @@ class PostController extends Controller
 
     public function index()
     {
+        
         $moisEnCours = Carbon::now()->month;
         $dateDuJour = date('Y-m-d');
         $nombre_client = apprenant::count();
@@ -26,7 +27,8 @@ class PostController extends Controller
         $depence = Depence::whereMonth('date_depence', $moisEnCours)->get();
         $participers = participer::whereDate('date_cour', $dateDuJour)->get();
         $sommeMontants = $depence->sum('montant');
-        return view('index', compact('nombre_client','nombre_moniteur','dateDuJour','participers','depence','sommeMontants'));
+        $nombre_cour_auj = $participers->count();
+        return view('index', compact('nombre_client','nombre_moniteur','dateDuJour','participers','depence','sommeMontants','nombre_cour_auj'));
     }
 
     public function authentification()

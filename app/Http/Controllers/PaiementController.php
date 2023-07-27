@@ -81,7 +81,7 @@ class PaiementController extends Controller
         }else{
             // message d'echec
         }
-        return redirect()->route('paiement')->with($message_type, $message);
+        return redirect()->route('paiement.show')->with($message_type, $message);
     }
 
     public function destroy(paiement $paiement)
@@ -89,6 +89,6 @@ class PaiementController extends Controller
         //$paiement->apprenants()->delete();
         $paiement->delete();
         
-        return redirect()->route('paiement');
+        return redirect()->route('paiement.show');
     }
 }

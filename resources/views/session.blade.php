@@ -84,9 +84,13 @@
             @if(session('success'))
                 <div class="alert alert-info" role="alert">
                     {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fermer</span>
+                    </button>
                 </div>
             @endif
-
+            
             
 
             <!-- [ Main Content ] end -->
@@ -96,12 +100,12 @@
                         <h5>Les Sessions</h5>
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                     </div>
-
-                    <div class="form-group">
-                        <p></p>
-                        <a href=" {{ route('etat_session') }} " class="btn  btn-primary">Download List</a>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <p></p>
+                            <a href=" {{ route('etat_session') }} " class="btn  btn-primary">Télécharger la liste <span class="pcoded-micon"><i class="fa fa-download"></i></span></a>
+                        </div>
                     </div>
-                    
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
                             
@@ -128,13 +132,13 @@
                                                 <button id="" type="submit" class="btn btn-danger" 
                                                 data-role="delete" 
                                                 data-url="{{ route('session.delete', $session) }}">
-                                                    Delete
+                                                    Delete <span class="pcoded-micon"><i class="fa fa-trash"></i></span>
                                                 </button>
                                             {{-- </form> --}}
                                         </td>
                                         <td>
                                             <form action="{{ route('session.edit', $session) }}" method="GET">
-                                                <button type="submit" class="btn btn-success">Update</button>
+                                                <button type="submit" class="btn btn-success">Update <span class="pcoded-micon"><i class="fa fa-refresh"></i></span></button>
                                             </form>
                                         </td>
                                     </tr>

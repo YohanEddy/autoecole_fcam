@@ -20,10 +20,11 @@ return new class extends Migration
             $table->string('prenom_moniteur');
             $table->string('sexe');
             $table->date('date_naiss');
+            $table->date('date_arrive');
             $table->string('domicile_moniteur');
             $table->string('telephone');
             $table->string('nationalite');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('lieunaiss');
             $table->timestamps();
         });

@@ -17,12 +17,15 @@ class moniteur extends Model
         'prenom_moniteur',
         'sexe',
         'date_naiss',
+        'date_arrive',
         'domicile_moniteur',
         'telephone',
         'nationalite',
         'email',
         'lieunaiss',
     ];
+
+
 
     public function fichesalaire()
     {

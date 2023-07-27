@@ -19,10 +19,12 @@ class SalaireController extends Controller
     {
         $salaires = fichesalaire::with('moniteur')->get();
         $moniteurs = moniteur::all();
-        // dd($salaires);
-        return view('fichesalaire', compact('moniteurs', 'salaires'));
+        $fichesalaire = fichesalaire::all();
+        return view('fichesalaire', compact('moniteurs', 'salaires','fichesalaire'));
+        dd($salaires);
+        
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -79,7 +81,7 @@ class SalaireController extends Controller
         // $fichesalaire->date_paiement = $request->date_paiement;
         // $fichesalaire->sal_net = $request->sal_net;
         // $fichesalaire->moniteur_id = $request->moniteur_id;
-
+        dd($request);
         // $fichesalaire->save();
 
         return redirect()->back()->with('success','Enregistrement éffectuer avec succès');
@@ -104,7 +106,9 @@ class SalaireController extends Controller
      */
     public function edit(fichesalaire $fichesalaire)
     {
-        //
+        $salaires = fichesalaire::all();
+        $moniteurs = moniteur::all();
+        return view('fichesalaire', compact('fichesalaire','salaires','moniteurs'));
     }
 
     /**
@@ -116,8 +120,44 @@ class SalaireController extends Controller
      */
     public function update(Request $request, fichesalaire $fichesalaire)
     {
-        //
+        $messages = [
+            'periode_debut.required'    => 'La date de début de la période est requise',
+            'periode_fin.required'      => 'La date de fin de la période est requise',
+            //'matricule.required'        => 'Vous devez choisir le moniteur',
+            //'matricule.exists'          => 'Le matricule du moniteur sélectionné n\'existe pas.',
+            'salaire_brut.required'     => 'Le salaire brut est requis',
+            //'tot_retenues.required'     => 'Le total des retenus est requis.',
+        ];
+
+        $rules = [
+            'periode_debut' => 'bail|required',
+            'periode_fin'   => 'bail|required',
+            'salaire_brut'  => 'bail|required',
+            //'tot_retenues'  => 'bail|required',
+            //'matricule'     => 'bail|required|exists:moniteurs',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $fichesalaire = fichesalaire::findOrFail($fichesalaire);
+        
+        $fichesalaire->periode_debut = $request->periode_debut;
+        $fichesalaire->periode_fin = $request->periode_fin;
+        $fichesalaire->salaire_brut = $request->salaire_brut;
+        $fichesalaire->sal_net = $request->salaire_brut - $request->tot_retenues;
+        //$fichesalaire->matricule = $request->matricule;
+        $fichesalaire->save();
+
+        return redirect()->back()->with('success', 'Mise à jour effectuée avec succès');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -129,6 +169,6 @@ class SalaireController extends Controller
     {
         $fichesalaire->delete();
 
-        return redirect()->route('fiche_paye.delete');
+        return redirect()->route('fiche_paye');
     }
 }

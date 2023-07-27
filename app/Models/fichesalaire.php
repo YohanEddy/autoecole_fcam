@@ -13,8 +13,7 @@ class fichesalaire extends Model
     protected $fillable = [
         'date_paiement',
         'periode_debut',
-        'date_paiement',
-        'peiode_debut',
+        'date_paiement',      
         'periode_fin',
         'salaire_brut',
         'sal_net',
@@ -22,6 +21,6 @@ class fichesalaire extends Model
     ];
     public function moniteur()
     {
-        return $this->belongsTo(moniteur::class,"matricule","matricule");
+        return $this->belongsTo(moniteur::class,'matricule','matricule');
     }
 }

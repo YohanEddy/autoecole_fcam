@@ -29,10 +29,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Liste des Apprenants</h5>
-                        <span class="d-block m-t-5"> <code></code></span>
                         <div class="form-group">
                             <p></p>
-                            <a href=" {{ route('etat_apprenant') }} " class="btn  btn-primary">Download List</a>
+                            <a href=" {{ route('etat_apprenant') }} " class="btn  btn-primary">Télécharger la liste <span class="pcoded-micon"><i class="fa fa-download"></i></span></a>
                         </div>
                     </div>
                     <div class="card-body table-border-style">
@@ -78,7 +77,9 @@
                                             <form action="{{ route('apprenant.delete', $apprenant) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Delete
+                                                    <span class="pcoded-micon"><i class="fa fa-trash"></i></span>
+                                                </button>
                                             </form>
                                         </td>
                                         <td>

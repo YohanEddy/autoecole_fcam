@@ -36,13 +36,14 @@
                 <h5>Liste des moniteurs</h5>
                 <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
             </div>
-            <hr>
+            
             <div class="card-body table-border-style">
                 <div class="table-responsive">
                     <table id="1" class="table datatable">
                         <thead>
                             <tr>
                                 <th scope="col">N°</th>
+                                <th scope="col">Matricule</th>
                                 <th scope="col">Nom et Prénoms</th>
                                 <th scope="col">Sexe</th>
                                 <th scope="col">Date de naissance</th>
@@ -55,6 +56,7 @@
                             @foreach ($moniteurs as $moniteur)
                             <tr>
                                 <td scope="row">{{ $moniteur->id }}</td>
+                                <td>{{ $moniteur->matricule }}</td>
                                 <td>{{ $moniteur->nom_moniteur. " " .$moniteur->prenom_moniteur }}</td>
                                 <td>{{ $moniteur->sexe }}</td>
                                 <td>{{ $moniteur->date_naiss }}</td>

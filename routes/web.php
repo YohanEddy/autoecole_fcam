@@ -33,7 +33,7 @@ Route::get('/apprenant', [ApprenantController::class, 'inscription1'])->name('in
 Route::post('/apprenant',[ApprenantController::class, 'store'])->name('apprenant.store');
 Route::delete('/apprenant/{inscrire}',[ApprenantController::class, 'destroy'])->name('apprenant.delete');
 Route::get('/apprenant/{inscrire}/edit',[ApprenantController::class, 'edit'])->name('apprenant.edit');
-Route::put('/apprenant/{inscrire}',[ApprenantController::class, 'update'])->name('apprenant.update');
+Route::put('/apprenant/{id}',[ApprenantController::class, 'update'])->name('apprenant.update');
 
 Route::get('/list_insc', [ListInscriController::class, 'liste_inscrit'])->name('list_ins')->middleware('auth');
 Route::get('/list_app', [ListApprenantController::class, 'liste_apprenant'])->name('list_app')->middleware('auth');
@@ -82,7 +82,7 @@ Route::delete('/participer/{participer}',[ParticiperController::class, 'destroy'
 
 Route::get('/fiche_payes', [SalaireController::class, 'index'])->name('fiche_paye')->middleware('auth');
 Route::post('/fiche_paye', [SalaireController::class, 'store'])->name('fiche_paye.store');
-Route::put('/fichsalaire/{fichesalaire}',[SalaireController::class, 'update'])->name('fiche_paye.update');//moniteur.delete
+Route::put('/fichsalaire/{fichesalaire}',[SalaireController::class, 'update'])->name('fiche_paye.update');
 Route::delete('/fichesalaire/{fichesalaire}',[SalaireController::class, 'destroy'])->name('fiche_paye.delete');
 Route::get('/fichesalaire/{fichesalaire}/edit',[SalaireController::class, 'edit'])->name('fiche_paye.edit');
 

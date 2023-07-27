@@ -43,7 +43,8 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect3"><strong>Date</strong></label>
-                                                <input name='date_depence' type="date" class="form-control" id="validationCustom03" placeholder="Date"required>
+                                                <input name='date_depence' type="date" class="form-control" id="validationCustom03" placeholder="Date"required
+                                                value="{{ isset($depence) ? $depence->date_depence : "" }}">
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
@@ -83,10 +84,14 @@
             </div>
         </div>
         @if(session('success'))
-                <div class="alert alert-info" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif        
+            <div class="alert alert-info" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+        @endif        
         <!-- [ Main Content ] end -->
         <div class="col-xl-12">
                 <div class="card">
@@ -95,7 +100,7 @@
                         <!--span class="d-block m-t-5">use class <code>table-striped</code> inside table element</!--span-->
                         <div class="form-group">
                             <p></p>
-                            <a href=" {{ route('etat_depense') }} " class="btn  btn-primary">Download List</a>
+                            <a href=" {{ route('etat_depense') }} " class="btn  btn-primary">Télécharger la liste <span class="pcoded-micon"><i class="fa fa-download"></i></span></a>
                         </div>
                     </div>
                     <div class="card-body table-border-style">

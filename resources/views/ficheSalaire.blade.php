@@ -3,6 +3,12 @@
 @endif
 @extends('../base/bases')
 @section('content')
+<style>
+    .required {
+    color: red;
+    margin-left: 5px;
+}
+    </style>
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-content">
@@ -30,8 +36,12 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-
-                            <form action="{{ route('fiche_paye.store') }}" method="post">
+                            @if(!isset($fichesalaire))
+                                <form action="{{ route('fiche_paye.store') }}" method="post">
+                            @else
+                                <form action="{{ route('fiche_paye.update', $fichesalaire) }}" method="POST">
+                                    @method('PUT')
+                            @endif 
                                 @csrf
                                 <h5>Nouvelle Fiche de paye</h5>
                                 <hr>
@@ -40,42 +50,56 @@
                                         <p class="text-center text-danger">{{ $error }}</p>
                                     @endforeach
                                 @endif
+                                <p class="text-danger mb-1">
+                                    (*) C'est pour désigner les champs obligatoires.
+                                </p>
+                                <hr>
                                 <div class="row">
                                     <div class="col-6 d-flex">
                                         <div class="d-block">
+                                            <label for="exampleFormControlSelect3"><strong>Date début<span class="required">*</span></strong></label>
                                             <input type="date" name='periode_debut' class="form-control"
-                                                id="validationCustom03" value="{{ old('periode_debut') }}">
+                                                id="validationCustom03" value="">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="d-block p-4">AU</div>
                                         <div class="d-block">
+                                            <label for="exampleFormControlSelect3"><strong>Date fin<span class="required">*</span></strong></label>
                                             <input type="date" name='periode_fin' class="form-control"
-                                                id="validationCustom04" value="{{ old('periode_fin') }}">
+                                                id="validationCustom04" value="">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
-
+                                        
                                     </div>
+                                    
                                     <div class="col-6">
                                         
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect1"><strong>Nom et Prénom</strong></label>
-                                            <select name='matricule'class="form-control" id="validationCustom02">
-                                                @foreach($moniteurs as $moniteur)
-                                                <option value="{{$moniteur->matricule}}">{{ $moniteur->nom_moniteur." ".$moniteur->prenom_moniteur }}</option>
-                                                @endforeach
+                                            <label for="exampleFormControlSelect1"><strong>Nom et Prénom<span class="required">*</span></strong></label>
+                                            <select name='matricule' class="form-control" id="validationCustom02">
+                                                @if($moniteurs->count() > 0)
+                                                    @foreach($moniteurs as $moniteur)
+                                                        <option value="{{ $moniteur->matricule }}" {{ isset($fichesalaire) && $moniteur->matricule == $fichesalaire->matricule ? 'selected' : '' }}>
+                                                            {{ $moniteur->nom_moniteur." ".$moniteur->prenom_moniteur }}
+                                                        </option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="" disabled>Aucun moniteur disponible</option>
+                                                @endif
                                             </select>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="validationCustom01"><strong>TOTAL DES RETENUES</strong></label>
+                                            <label for="validationCustom01"><strong>TOTAL DES RETENUES<span class="required">*</span></strong></label>
                                             <input name='tot_retenues' type="text" class="form-control"
-                                                id="validationCustom02" placeholder=""required
-                                                value="{{ old('tot_retenues') }}">
+                                                id="validationCustom02" placeholder=" Total des retenues"required
+                                                value="">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -84,21 +108,22 @@
                                    
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="validationCustom01"><strong>TOTAL BRUT</strong></label>
-                                            <input name='salaire_brut' type="text" class="form-control"
-                                                id="validationCustom02" placeholder=""required
-                                                value="{{ old('tot_brut') }}">
+                                            <label for="validationCustom01"><strong>TOTAL BRUT<span class="required">*</span></strong></label>
+                                            <input name='salaire_brut' type="text" class="form-control" id="validationCustom02" placeholder="Total brut" 
+                                                required value="{{ isset($fichesalaire) ? $fichesalaire->salaire_brut : '' }}">
+
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                     </div>
-                            
-                                @if (!isset($fichesalaire))
-                                    <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
-                                @else
-                                    <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
-                                @endif
+                                <div class="col-6">
+                                    @if (!isset($fichesalaire))
+                                        <button type="submit" class="btn  btn-primary">{{ __('Ajouter') }}</button>
+                                    @else
+                                        <button type="submit" class="btn  btn-primary">{{ __('Modifier') }}</button>
+                                    @endif
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -107,6 +132,10 @@
             @if(session('success'))
                 <div class="alert alert-info" role="alert">
                     {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fermer</span>
+                    </button>
                 </div>
             @endif
             <!-- [ Main Content ] end -->
@@ -119,7 +148,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <p></p>
-                            <a href=" {{ route('etat_salaire') }} " class="btn  btn-primary">Download List</a>
+                            <a href=" {{ route('etat_salaire') }} " class="btn  btn-primary">Télécharger la liste <span class="pcoded-micon"><i class="fa fa-download"></i></span></a>
                         </div>
                     </div>
                     <div class="card-body table-border-style">
@@ -139,10 +168,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($salaires as $salaire)
+                                    @forelse ($salaires as $salaire)
                                         <tr>
                                             <td>{{ $salaire->id }}</td>
-                                            <td>{{ $salaire->matricule }}</td>
+                                            <td>{{ $salaire->moniteur->matricule }}</td>
                                             <td>{{ $salaire->moniteur->nom_moniteur. " " .$salaire->moniteur->prenom_moniteur}} </td>
                                             <td>{{ $salaire->periode_debut. " Au " .$salaire->periode_fin}}
                                             <td>{{ $salaire->salaire_brut }}</td>
@@ -153,17 +182,25 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">Delete
+                                                        <span class="pcoded-micon"><i class="fa fa-trash"></i></span>
+                                                    </button>
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="{{ route('fiche_paye.edit', $salaire) }}"
                                                     method="GET">
-                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                    <button type="submit" class="btn btn-success">Update 
+                                                        
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="9">Aucune fiche de salaire trouvée.</td>
+                                            </tr>
+                                    @endforelse
                                 </tbody>
 
                             </table>

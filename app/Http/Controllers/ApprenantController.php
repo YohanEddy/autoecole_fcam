@@ -15,9 +15,11 @@ class ApprenantController extends Controller
 
     public function inscription1()
     {
+        $progress = 1;
         $inscrires = inscrire::all();
+        $apprenants = apprenant::all();
         $sessions = session::all();
-        return view('inscription1', compact('inscrires','sessions'));
+        return view('inscription1', compact('inscrires','sessions','progress','apprenants'));
     }
 
     public function create()
@@ -29,8 +31,8 @@ class ApprenantController extends Controller
     {
         $inscrires = inscrire::all();
         $sessions = session::all();
-        //$apprenants = apprenant::all();
-        return view('inscription1', compact("inscrires","sessions"));
+        $apprenants = apprenant::all();
+        return view('inscription1', compact("inscrires","sessions","apprenants"));
     }
 
     //public const inscription = '/form';
@@ -47,9 +49,9 @@ class ApprenantController extends Controller
             'domicile' => 'required',
             'nationalite' => 'required',
             'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
-            'email' => 'required|email',
-            'attentes' => 'required',
-            'cnxance_centre' => 'required',
+            //'email' => 'required|email',
+            //'attentes' => 'required',
+            //'cnxance_centre' => 'required',
             'date_inscrip' => 'required',
             'periode' => 'required',
             'modalite' => 'required'
@@ -82,7 +84,7 @@ class ApprenantController extends Controller
         
         $inscrire->save();
         //print_r($apprenant);
-        return redirect()->route('inscription');
+        return redirect()->route('inscription')->with('success', 'Enregistrement éffectué avec succes');
         
     } 
 
@@ -105,9 +107,9 @@ class ApprenantController extends Controller
             'domicile' => 'required',
             'nationalite' => 'required',
             'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
-            'email' => 'required|email',
-            'attentes' => 'required',
-            'cnxance_centre' => 'required',
+            //'email' => 'required|email',
+            //'attentes' => 'required',
+            //'cnxance_centre' => 'required',
             'date_inscrip' => 'required',
             'periode' => 'required',
             'modalite' => 'required'
@@ -144,9 +146,9 @@ class ApprenantController extends Controller
     public function destroy(inscrire $inscrire) 
     {
         //$inscrire->apprenant->participer->delete();
-        $inscrire->session->delete();
+        //$inscrire->session->delete();
         $inscrire->apprenant->delete();
 
-        return redirect()->route('inscription');
+        return redirect()->route('list_app');
     }
 }

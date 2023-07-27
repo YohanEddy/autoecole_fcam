@@ -20,23 +20,19 @@
 	<script src="{{ URL::asset('datatable/DataTables/jQuery-3.6.0/jquery-3.6.0.min.js') }}"></script>
 	{{-- <link rel="stylesheet" href="{{ asset('path/to/sweetalert.css') }}"> --}}
 	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
-    @vite('../../resources/js/app.js')
+    @vite('resources/js/app.js')
 
 </head>
-<body class="">
+<body>
 	<!-- [ Pre-loader ] start -->
-	<div class="loader-bg">
-		<div class="loader-track">
-			<div class="loader-fill">A</div>
-		</div>
-	</div>
+	
 	<!-- [ Pre-loader ] End -->
 	<!-- [ navigation menu ] start -->
 	<nav class="pcoded-navbar menu-light ">
-		<div class="navbar-wrapper  ">
+		<!--<div class="navbar-wrapper  "-->
 			<div class="navbar-content scroll-div " >
 				
-				<div class="">
+				<div>
 					<div class="main-menu-header">
 						<!--<img class="img-radius" src="{{ asset('images/user/fcam.jpg') }}" alt="User-Profile-Image"> -->
 						<div class="user-details">
@@ -56,23 +52,27 @@
 					    <label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="{{ route('home') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Menu</span></a>
+					    <a href="{{ route('home') }}" class="nav-link "><img src="{{ asset('images/menu.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext"><b>Menu</b></span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Formulaires &amp; Tableaux</label>
 					</li>
-					<li class="nav-item">
-					    <a href="{{ route('inscription') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Inscription</span></a>
+					<li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><img src="{{ asset('images/apprenant.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Apprenants</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="{{ route('inscription') }}">Nouvelle Inscription</a></li>
+					        <li><a href="{{ route('list_app') }}">Liste des Apprenants</a></li>
+					    </ul>
 					</li>
                     <li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hand-holding-usd"></i></span><span class="pcoded-mtext">Moniteur</span></a>
+					    <a href="#!" class="nav-link "><img src="{{ asset('images/moniteur.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Moniteur</span></a>
 					    <ul class="pcoded-submenu">
 					        <li><a href="{{ route('moniteur') }}">Nouveau Moniteur</a></li>
 					        <li><a href="{{ route('list_monit') }}">Liste des Moniteurs</a></li>
 					    </ul>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hand-holding-usd"></i></span><span class="pcoded-mtext">Caisse</span></a>
+					    <a href="#!" class="nav-link "><img src="{{ asset('images/caisse.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Caisse</span></a>
 					    <ul class="pcoded-submenu">
 					        <li><a href="{{ route('paiement') }}">Paiement du Client</a></li>
 					        <li><a href="{{ route('fiche_paye') }}">Paiement des moniteurs</a></li>
@@ -80,13 +80,13 @@
 					    </ul>
 					</li>
                     <li class="nav-item">
-					    <a href="{{ route('session') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Session</span></a>
+					    <a href="{{ route('session') }}" class="nav-link "><img src="{{ asset('images/autre.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Session</span></a>
 					</li>
                     <li class="nav-item">
-					    <a href="{{ route('cour') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Cours</span></a>
+					    <a href="{{ route('cour') }}" class="nav-link "><img src="{{ asset('images/autre.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext"><b>Cours</b></span></a>
 					</li>
 					<li class="nav-item">
-					    <a href="{{ route('participer') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Programmer un cour</span></a>
+					    <a href="{{ route('participer') }}" class="nav-link "><img src="{{ asset('images/autre.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Programmer un cour</span></a>
 					</li>
 		
 					<li class="nav-item pcoded-menu-caption">
@@ -105,7 +105,7 @@
 				</ul>
 				
 			</div>
-		</div>
+		
 	</nav>
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
 		
@@ -114,7 +114,7 @@
 					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 					<a href="#!" class="b-brand">
 						<!-- ========   change your logo hear   ============ -->
-						<img src="{{ asset('images/logo.png') }}" alt="" class="logo">
+						<img src="{{ asset('images/FCAM.png') }}" alt="" class="logo">
 						<img src="{{ asset('images/logo-icon.png') }}" alt="" class="logo-thumb">
 					</a>
 					<a href="#!" class="mob-toggler">
@@ -122,17 +122,7 @@
 					</a>
 				</div>
 				<div class="collapse navbar-collapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-							<div class="search-bar">
-								<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
-								<button type="button" class="close" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-						</li>
-					</ul>
+					
 					<ul class="navbar-nav ml-auto">
 						<li>
 							<div class="dropdown drp-user">

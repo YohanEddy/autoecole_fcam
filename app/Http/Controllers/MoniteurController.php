@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\moniteur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -43,28 +44,30 @@ class MoniteurController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'matricule'         => 'bail|required|unique:moniteurs',
+            //'matricule'         => 'bail|required|unique:moniteurs',
             'nom_moniteur'      => 'bail|required',
             'prenom_moniteur'   => 'bail|required',
             'sexe'              => 'bail|required',
             'date_naiss'        => 'bail|required',
+            'date_arrive'       => 'bail|required',
             'lieunaiss'         => 'bail|required',
             'domicile_moniteur' => 'bail|required',
             'nationalite'       => 'bail|required',
-            'email'             => 'bail|required|email',
+            //'email'             => 'bail|required|email',
             'telephone'         => 'bail|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
         ];
         $messages = [
-            'matricule.required'        => 'Le matricule est requis.',
-            'matricule.unique'          => 'Le numero de matricule existe déjà.',
+            //'matricule.required'        => 'Le matricule est requis.',
+            //'matricule.unique'          => 'Le numero de matricule existe déjà.',
             'nom_moniteur.required'     => 'Le nom du moniteur est requis.',
             'prenom_moniteur.required'  => 'Le prénom du moniteur est requis.',
             'sexe.required'             => 'Le sexe est requis.',
             'date_naiss.required'       => 'La date de naissance est requis.',
+            'date_arrive.required'      => 'La date d\'arrive est requis.',
             'lieunaiss.required'        => 'Le lieu de naissance est requis.',
             'domicile_moniteur.required'    => 'L\'adresse du domicile est requis.',
             'nationalite.required'          => 'La nationalité est requis.',
-            'email.required'                => 'L\'adresse email est requis.',
+            //'email.required'                => 'L\'adresse email est requis.',
             'email.email'                   => 'L\'adresse email est incorrect.',
             'telephone.required'            => 'Le numero de téléphone est requis.',
             'telephone.regex'               => 'Le numéro de téléphone doit être composer uniquement de chiffre.'
@@ -80,11 +83,12 @@ class MoniteurController extends Controller
         }
 
         $moniteur = new Moniteur;
-        $moniteur->matricule = $request->matricule;
+        $moniteur->matricule = Helper::IDGenerator(new moniteur, 'id', 'matricule', $length = 5, 'MO');
         $moniteur->nom_moniteur = $request->nom_moniteur;
         $moniteur->prenom_moniteur = $request->prenom_moniteur;
         $moniteur->sexe = $request->sexe;
         $moniteur->date_naiss = $request->date_naiss;
+        $moniteur->date_arrive = $request->date_arrive;
         $moniteur->lieunaiss = $request->lieunaiss;
         $moniteur->domicile_moniteur = $request->domicile_moniteur;
         $moniteur->telephone = $request->telephone;
@@ -133,28 +137,30 @@ class MoniteurController extends Controller
         $message = "";
         $message_type = "";
         $rules = [
-            'matricule'         => 'bail|required|exists:moniteurs',
+            //'matricule'         => 'bail|required|exists:moniteurs',
             'nom_moniteur'      => 'bail|required',
             'prenom_moniteur'   => 'bail|required',
             'sexe'              => 'bail|required',
             'date_naiss'        => 'bail|required',
+            'date_arrive'       => 'bail|required',
             'lieunaiss'         => 'bail|required',
             'domicile_moniteur' => 'bail|required',
             'nationalite'       => 'bail|required',
-            'email'             => 'bail|required|email',
+            //'email'             => 'bail|required|email',
             'telephone'         => 'bail|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8'
         ];
         $messages = [
-            'matricule.required'        => 'Le matricule est requis.',
+            //'matricule.required'        => 'Le matricule est requis.',
             'matricule.exists'          => 'Le numero de matricule n\'existe pas.',
             'nom_moniteur.required'     => 'Le nom du moniteur est requis.',
             'prenom_moniteur.required'  => 'Le prénom du moniteur est requis.',
             'sexe.required'             => 'Le sexe est requis.',
             'date_naiss.required'       => 'La date de naissance est requis.',
+            'date_arrive.required'      => 'La date d\'arrive est requis.',
             'lieunaiss.required'        => 'Le lieu de naissance est requis.',
             'domicile_moniteur.required'    => 'L\'adresse du domicile est requis.',
             'nationalite.required'          => 'La nationalité est requis.',
-            'email.required'                => 'L\'adresse email est requis.',
+            //'email.required'                => 'L\'adresse email est requis.',
             'email.email'                   => 'L\'adresse email est incorrect.',
             'telephone.required'            => 'Le numero de téléphone est requis.',
             'telephone.regex'               => 'Le numéro de téléphone doit être composer uniquement de chiffre.'
@@ -172,6 +178,7 @@ class MoniteurController extends Controller
         $moniteur->prenom_moniteur = $request->prenom_moniteur;
         $moniteur->sexe = $request->sexe;
         $moniteur->date_naiss = $request->date_naiss;
+        $moniteur->date_arrive = $request->date_arrive;
         $moniteur->lieunaiss = $request->lieunaiss;
         $moniteur->domicile_moniteur = $request->domicile_moniteur;
         $moniteur->telephone = $request->telephone;
@@ -199,6 +206,6 @@ class MoniteurController extends Controller
     {
         $moniteur->delete();
 
-        return redirect()->route('moniteur');
+        return redirect()->route('list_monit');
     }
 }

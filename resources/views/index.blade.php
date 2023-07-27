@@ -34,16 +34,8 @@
                             <div class="card-footer bg-primary text-white">
                                 <div class="row text-center">
                                     <div class="col">
-                                        <h4 class="m-0 text-white">10</h4>
-                                        <span>Open</span>
-                                    </div>
-                                    <div class="col">
-                                        <h4 class="m-0 text-white">5</h4>
-                                        <span>Running</span>
-                                    </div>
-                                    <div class="col">
-                                        <h4 class="m-0 text-white">3</h4>
-                                        <span>Solved</span>
+                                        <h4 class="m-0 text-white">Nombre total de client</h4>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
@@ -60,16 +52,8 @@
                             <div class="card-footer bg-success text-white">
                                 <div class="row text-center">
                                     <div class="col">
-                                        <h4 class="m-0 text-white">10</h4>
-                                        <span>Open</span>
-                                    </div>
-                                    <div class="col">
-                                        <h4 class="m-0 text-white">5</h4>
-                                        <span>Running</span>
-                                    </div>
-                                    <div class="col">
-                                        <h4 class="m-0 text-white">3</h4>
-                                        <span>Solved</span>
+                                        <h4 class="m-0 text-white">Nombre total de moniteur</h4>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
@@ -109,10 +93,10 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row align-items-center">
+                                <div class="row align-items-center"> 
                                     <div class="col-8">
-                                        <h4 class="text-c-green">290+</h4>
-                                        <h6 class="text-muted m-b-0">Page Views</h6>
+                                        <h4 class="text-c-green">{{ $nombre_cour_auj }}</h4>
+                                        <h6 class="text-muted m-b-0">Nombre de cours programmer aujourd'hui</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-file-text f-28"></i>
@@ -191,7 +175,9 @@
                         <hr>
                         <div class="col-6">
                             <div class="form-group">
-                                <a href=" {{ route('etat_pgrm_cour') }} " class="btn  btn-primary">Download List</a>
+                                <a href=" {{ route('etat_pgrm_cour') }} " class="btn  btn-primary">Download List
+                                    <span class="pcoded-micon"><i class="fa fa-download"></i></span>
+                                </a>
                             </div>
                         </div>
                     </div>
