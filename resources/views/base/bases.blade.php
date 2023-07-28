@@ -15,8 +15,8 @@
     <link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
 
     <!-- vendor css -->
-	<link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}"> 
-	<link rel="stylesheet" href="{{ URL::asset('datatable/DataTables/datatables.min.css') }}">   
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('datatable/DataTables/datatables.min.css') }}">
 	<script src="{{ URL::asset('datatable/DataTables/jQuery-3.6.0/jquery-3.6.0.min.js') }}"></script>
 	{{-- <link rel="stylesheet" href="{{ asset('path/to/sweetalert.css') }}"> --}}
 	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
@@ -25,13 +25,13 @@
 </head>
 <body>
 	<!-- [ Pre-loader ] start -->
-	
+
 	<!-- [ Pre-loader ] End -->
 	<!-- [ navigation menu ] start -->
 	<nav class="pcoded-navbar menu-light ">
 		<!--<div class="navbar-wrapper  "-->
 			<div class="navbar-content scroll-div " >
-				
+
 				<div>
 					<div class="main-menu-header">
 						<!--<img class="img-radius" src="{{ asset('images/user/fcam.jpg') }}" alt="User-Profile-Image"> -->
@@ -41,12 +41,12 @@
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
-							
+
 							<li class="list-group-item"><a href=" {{ route('logout') }}"><i class="feather icon-log-out m-r-5"></i>Se Deconnecter</a></li>
 						</ul>
 					</div>
 				</div>
-				
+
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Navigation</label>
@@ -88,7 +88,7 @@
 					<li class="nav-item">
 					    <a href="{{ route('participer') }}" class="nav-link "><img src="{{ asset('images/autre.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Programmer un cour</span></a>
 					</li>
-		
+
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Paramètres</label>
 					</li>
@@ -103,13 +103,13 @@
 					<li class="nav-item"><a href="{{ route('sample') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
 
 				</ul>
-				
+
 			</div>
-		
+
 	</nav>
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
-		
-			
+
+
 				<div class="m-header">
 					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 					<a href="#!" class="b-brand">
@@ -122,7 +122,7 @@
 					</a>
 				</div>
 				<div class="collapse navbar-collapse">
-					
+
 					<ul class="navbar-nav ml-auto">
 						<li>
 							<div class="dropdown drp-user">
@@ -146,8 +146,8 @@
 						</li>
 					</ul>
 				</div>
-				
-			
+
+
 	</header>
 
 	@yield('content')
@@ -158,7 +158,7 @@
 	{{-- <script src="../assets/js/swetalert.js"></script> --}}
 	<script src="{{ asset('datatable/DataTables/datatables.min.js') }}"></script>
 
-	@vite("../../resources/js/test.js")
+	@vite("resources/js/test.js")
 
 <!-- Apex Chart -->
 {<script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script>

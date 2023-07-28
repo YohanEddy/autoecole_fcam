@@ -51,7 +51,6 @@
     outline: none;
 }
 </style>
-@dump($errors)
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-content">
