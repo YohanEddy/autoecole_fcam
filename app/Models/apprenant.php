@@ -12,6 +12,22 @@ class apprenant extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nameapp',
+        'prenomapp',
+        'sexe',
+        'datenaiss',
+        'profession',
+        'lieunaiss',
+        'domicile',
+        'nationalite',
+        'telephone',
+        'email',
+        'attentes',
+        'cnxance_centre',
+        'date_inscrip',
+    ];
+
     public function paiement()
     {
         return $this->hasMany(paiement::class);
@@ -26,7 +42,5 @@ class apprenant extends Model
     {
         return $this->hasMany(participer::class);
     }
-
-    protected $fillable = ['name'];
 }
 
