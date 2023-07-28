@@ -39,7 +39,7 @@
                             @if(!isset($fichesalaire))
                                 <form action="{{ route('fiche_paye.store') }}" method="post">
                             @else
-                                <form action="{{ route('fiche_paye.update', $fichesalaire) }}" method="POST">
+                                <form action="{{ route('fiche_paye.update', $salaires) }}" method="POST">
                                     @method('PUT')
                             @endif 
                                 @csrf
