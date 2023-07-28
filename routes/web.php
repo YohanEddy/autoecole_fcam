@@ -33,7 +33,7 @@ Route::get('/apprenant', [ApprenantController::class, 'inscription1'])->name('in
 Route::post('/apprenant',[ApprenantController::class, 'store'])->name('apprenant.store');
 Route::delete('/apprenant/{inscrire}',[ApprenantController::class, 'destroy'])->name('apprenant.delete');
 Route::get('/apprenant/{inscrire}/edit',[ApprenantController::class, 'edit'])->name('apprenant.edit');
-Route::put('/apprenant/{id}',[ApprenantController::class, 'update'])->name('apprenant.update');
+Route::put('/apprenant/{inscrire}',[ApprenantController::class, 'update'])->name('apprenant.update');
 
 Route::get('/list_insc', [ListInscriController::class, 'liste_inscrit'])->name('list_ins')->middleware('auth');
 Route::get('/list_app', [ListApprenantController::class, 'liste_apprenant'])->name('list_app')->middleware('auth');

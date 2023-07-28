@@ -59,7 +59,7 @@
                                 <tbody>
                                     @foreach ($apprenants as $apprenant)
                                     <tr>
-                                        
+
                                         <td>{{ $apprenant->id }}</td>
                                         <td>{{ $apprenant->nameapp }}</td>
                                         <td>{{ $apprenant->prenomapp }}</td>
@@ -83,9 +83,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('apprenant.edit', $apprenant) }}" method="GET">
-                                                <button type="submit" class="btn btn-success">Update</button>
-                                            </form>
+                                            <a href="{{ route('apprenant.edit', $apprenant) }}" class="btn btn-success">Update</a>
                                         </td>
                                     </tr>
                                     @endforeach

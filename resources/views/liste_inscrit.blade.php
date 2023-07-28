@@ -18,7 +18,7 @@
                     <li class="breadcrumb-item"><a href=" {{ route('inscription') }}">Inscription</a></li>
                     <li class="breadcrumb-item"><a href="#!">Liste des inscrits</a></li>
                 </ul>
-                
+
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                                 <tbody>
                                     @foreach ($inscrires as $inscrire)
                                     <tr>
-                                        
+
                                         <td>{{ $inscrire->apprenant->id }}</td>
                                         <td>{{ $inscrire->apprenant->nameapp }}</td>
                                         <td>{{ $inscrire->apprenant->prenomapp }}</td>
@@ -74,9 +74,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('apprenant.edit', $inscrire) }}" method="GET">
-                                                <button type="submit" class="btn btn-success">Update</button>
-                                            </form>
+                                            <a href="{{ route('apprenant.edit', $inscrire) }}" class="btn btn-success">Update</a>
                                         </td>
                                     </tr>
                                     @endforeach
