@@ -61,7 +61,7 @@
 					    <a href="#!" class="nav-link "><img src="{{ asset('images/apprenant.png') }}" alt="" class="fa" width="40" height="40"><span class="pcoded-mtext">Apprenants</span></a>
 					    <ul class="pcoded-submenu">
 					        <li><a href="{{ route('inscription') }}">Nouvelle Inscription</a></li>
-					        <li><a href="{{ route('list_app') }}">Liste des Apprenants</a></li>
+					        <li><a href="{{ route('list_ins') }}">Liste des Apprenants</a></li>
 					    </ul>
 					</li>
                     <li class="nav-item pcoded-hasmenu">

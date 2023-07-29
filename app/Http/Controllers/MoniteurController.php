@@ -134,6 +134,7 @@ class MoniteurController extends Controller
      */
     public function update(Request $request, moniteur $moniteur)
     {
+        dd($moniteur);
         $message = "";
         $message_type = "";
         $rules = [

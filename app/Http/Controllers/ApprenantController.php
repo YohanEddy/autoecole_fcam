@@ -77,8 +77,9 @@ class ApprenantController extends Controller
         return view('apprenant.show', compact($apprenant));
     }
 
-    public function update(Request $request, inscrire $inscrire)
+    /* public function update(Request $request, inscrire $inscrire)
     {
+        dd($inscrire);
         $message = "";
         $message_type = "";
         $request->validate([
@@ -127,7 +128,45 @@ class ApprenantController extends Controller
             $message = "Operation effectuer avec succès";
         }else{}
         return redirect()->route('inscription')->with($message_type, $message);
+    } */
+    // Assurez-vous que le chemin vers votre modèle est correct
+
+public function update(Request $request, $id)
+{
+    //dd($id);
+    $message = "";
+    $message_type = "";
+    $request->validate([
+        // Vos règles de validation ici
+        'nameapp' => 'required',
+        'prenomapp' => 'required',
+        'sexe' => 'required',
+        'datenaiss' => 'required',
+        'profession' => 'required',
+        'lieunaiss' => 'required',
+        'domicile' => 'required',
+        'nationalite' => 'required',
+        'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+        //'email' => 'required|email',
+        //'attentes' => 'required',
+        //'cnxance_centre' => 'required',
+        'date_inscrip' => 'required',
+        'periode' => 'required',
+        'modalite' => 'required'
+    ]);
+
+    try {
+        $inscrire = Inscrire::findOrFail($id); // Récupère l'objet ou lance une exception si non trouvé
+        $inscrire->apprenant->update($request->all());
+        $message_type = 'success';
+        $message = "Opération effectuée avec succès";
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        $message_type = 'error';
+        $message = "Enregistrement non trouvé";
     }
+
+    return redirect()->route('list_ins')->with($message_type, $message);
+}
 
     public function destroy(inscrire $inscrire)
     {
@@ -135,6 +174,6 @@ class ApprenantController extends Controller
         //$inscrire->session->delete();
         $inscrire->apprenant->delete();
 
-        return redirect()->route('list_app');
+        return redirect()->route('list_ins');
     }
 }
